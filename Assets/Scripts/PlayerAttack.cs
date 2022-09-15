@@ -22,7 +22,14 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(_attackPos.position, new Vector2(_attackRangeX, _attackRangeY), 0, Enemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(0);
+                    if (enemiesToDamage[i].GetComponent<Enemy>() != null)
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(0);
+                    }
+                    else
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy2>().TakeDamage(0);
+                    }
                     _attackDelayTime = _maxAttackDelayTime;
                 }
             }
@@ -32,7 +39,14 @@ public class PlayerAttack : MonoBehaviour
                 Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(_attackPos.position, new Vector2(_attackRangeX, _attackRangeY), 0, Enemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(1);
+                    if (enemiesToDamage[i].GetComponent<Enemy>() != null)
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(1);
+                    }
+                    else
+                    {
+                        enemiesToDamage[i].GetComponent<Enemy2>().TakeDamage(1);
+                    }
                     _attackDelayTime = _maxAttackDelayTime;
                 }
             }

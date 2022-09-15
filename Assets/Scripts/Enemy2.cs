@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy2 : MonoBehaviour
 {
+
     [SerializeField] private float _speed;
-    [SerializeField] private int[] _health;
+    private int _maxHealth = 2;
+    private int _currentHealth;
     private float _dazedTime;
     [SerializeField] private float _startDazedTime;
     [SerializeField] GameObject _horizontal;
@@ -13,10 +15,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] ParticleSystem _candyParticle;
 
     private Animator Anim;
+    private Rigidbody2D _rb;
 
     private void Awake()
     {
+        _currentHealth = _maxHealth;
         Anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -40,18 +45,41 @@ public class Enemy : MonoBehaviour
         if (direction == 0)
         {
             _dazedTime = _startDazedTime;
-            GameObject verticalHalves = Instantiate(_vertical, transform.position, transform.rotation);
-            Debug.Log("Vertical");
-            Destroy(gameObject);
+            _rb.AddForce(new Vector2(150, 0));
+            _currentHealth -= 1;
+            if (_currentHealth <= 0)
+            {
+                Kill(0);
+            }
         }
         else if (direction == 1)
         {
             _dazedTime = _startDazedTime;
-            GameObject horizontalHalves = Instantiate(_horizontal, transform.position, transform.rotation);
-            Debug.Log("Horizontal");
-            Destroy(gameObject);
+            _rb.AddForce(new Vector2(150, 0));
+            _currentHealth -= 1;
+            if (_currentHealth <= 0)
+            {
+                Kill(1);
+            }
         }
 
+    }
+
+    public void Kill(int direction)
+    {
+        if (direction == 0)
+        {
+            GameObject verticalHalves = Instantiate(_vertical, transform.position, transform.rotation);
+            Debug.Log("Vertical");
+
+        }
+        else if (direction == 1)
+        {
+            GameObject horizontalHalves = Instantiate(_horizontal, transform.position, transform.rotation);
+            Debug.Log("Horizontal");
+        }
+        Destroy(gameObject);
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
     }
+
 }
