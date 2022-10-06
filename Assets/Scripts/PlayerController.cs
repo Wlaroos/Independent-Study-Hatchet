@@ -56,6 +56,14 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
+        if(x != 0)
+        {
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Moving", true);
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Moving", false);
+        }
         float moveBy = x * _speed;
         _rb.velocity = new Vector2(moveBy, _rb.velocity.y);
         if (_rb.velocity.x > 0 && !_facingRight)  // Moving right, facing left
@@ -86,6 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
             _additionalJumps = _defaultAdditionalJumps;
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Grounded", true);
         }
         else
         {
@@ -94,6 +103,7 @@ public class PlayerController : MonoBehaviour
                 _lastTimeGrounded = Time.time;
             }
             _isGrounded = false;
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Grounded", false);
         }
     }
 
