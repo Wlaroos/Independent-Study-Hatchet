@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
-
-    [SerializeField] private float _speed;
-    private int _maxHealth = 2;
+    [SerializeField] protected float _maxSpeed = 5f;
+    private float _speed;
+    [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
+    [SerializeField] protected float _startDazedTime;
     private float _dazedTime;
-    [SerializeField] private float _startDazedTime;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
@@ -20,6 +20,7 @@ public class Enemy2 : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
+        _speed = _maxSpeed;
         Anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -28,19 +29,22 @@ public class Enemy2 : MonoBehaviour
     {
         if (_dazedTime <= 0)
         {
-            _speed = .5f;
+            Move();
+            _speed = _maxSpeed;
         }
         else
         {
             _speed = 0;
             _dazedTime -= Time.deltaTime;
         }
+    }
 
-
+    protected virtual void Move()
+    {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
-    public void TakeDamage(int direction)
+    public virtual void TakeDamage(int direction)
     {
         if (direction == 0)
         {
@@ -49,7 +53,7 @@ public class Enemy2 : MonoBehaviour
             _currentHealth -= 1;
             if (_currentHealth <= 0)
             {
-                Kill(0);
+                Death(0);
             }
         }
         else if (direction == 1)
@@ -59,13 +63,12 @@ public class Enemy2 : MonoBehaviour
             _currentHealth -= 1;
             if (_currentHealth <= 0)
             {
-                Kill(1);
+                Death(1);
             }
         }
-
     }
 
-    public void Kill(int direction)
+    public void Death(int direction)
     {
         if (direction == 0)
         {
