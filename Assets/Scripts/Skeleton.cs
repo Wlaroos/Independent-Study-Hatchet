@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Skeleton : EnemyBase
 {
-
+    public override void TestMethod()
+    {
+        //base.TestMethod();
+        Debug.Log("Skeleton Test");
+    }
 }

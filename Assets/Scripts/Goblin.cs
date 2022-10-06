@@ -5,4 +5,10 @@ using UnityEngine;
 public class Goblin : EnemyBase
 {
 
+    public override void TestMethod()
+    {
+        //base.TestMethod();
+        Debug.Log("Goblin Test");
+    }
+
 }

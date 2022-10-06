@@ -85,4 +85,8 @@ public abstract class EnemyBase : MonoBehaviour
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
     }
 
+    public virtual void TestMethod()
+    {
+        Debug.Log("EnemyBase TEST");
+    }
 }
