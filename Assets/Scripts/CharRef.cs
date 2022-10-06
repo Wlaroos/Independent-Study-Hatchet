@@ -6,6 +6,8 @@ public class CharRef : MonoBehaviour
 {
     [SerializeField] PlayerData _player;
 
+    [SerializeField] int _candyValue = 1;
+
     ParticleSystem ps;
 
     List<ParticleSystem.Particle> _particles = new List<ParticleSystem.Particle>();
@@ -25,7 +27,7 @@ public class CharRef : MonoBehaviour
         {
             ParticleSystem.Particle p = _particles[i];
             p.remainingLifetime = 0;
-            _player.Candy(1);
+            _player.Candy(_candyValue);
             _particles[i] = p;
         }
 

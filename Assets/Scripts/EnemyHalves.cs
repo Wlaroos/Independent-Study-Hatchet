@@ -7,16 +7,18 @@ public class EnemyHalves : MonoBehaviour
     private Rigidbody2D _rb;
     [SerializeField] float xForce;
     [SerializeField] float yForce;
+    [SerializeField] float randomForceAmount = 200;
+    [SerializeField] float randomTorqueAmount = 100;
+    [SerializeField] float destroyDelay = 2.5f;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
 
-        _rb.AddTorque(UnityEngine.Random.Range(-100, 100));
+        _rb.AddTorque(Random.Range(-randomTorqueAmount, randomTorqueAmount));
+        _rb.AddForce( new Vector2(Random.Range(xForce - randomForceAmount, xForce + randomForceAmount), Random.Range(yForce - randomForceAmount, yForce + randomForceAmount)));
 
-        _rb.AddForce( new Vector2(UnityEngine.Random.Range(xForce - 200, xForce + 200), UnityEngine.Random.Range(yForce - 200, yForce + 200)));
-
-        Invoke(nameof(Delt), 2.5f);
+        Invoke(nameof(Delt), destroyDelay);
     }
 
     private void Delt()

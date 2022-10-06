@@ -24,10 +24,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _groundChecker;
     [SerializeField] LayerMask _groundLayer;
     Rigidbody2D _rb;
+    Animator _animator;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = transform.GetChild(0).GetComponent<Animator>();
         _facingRight = true;
     }
 
@@ -58,11 +60,11 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         if(x != 0)
         {
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Moving", true);
+            _animator.SetBool("Moving", true);
         }
         else
         {
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Moving", false);
+            _animator.SetBool("Moving", false);
         }
         float moveBy = x * _speed;
         _rb.velocity = new Vector2(moveBy, _rb.velocity.y);
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
             _additionalJumps--;
-            transform.GetChild(0).GetComponent<Animator>().SetTrigger("Jump");
+            _animator.SetTrigger("Jump");
         }
 
     }
@@ -94,7 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
             _additionalJumps = _defaultAdditionalJumps;
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Grounded", true);
+            _animator.SetBool("Grounded", true);
         }
         else
         {
@@ -103,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 _lastTimeGrounded = Time.time;
             }
             _isGrounded = false;
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Grounded", false);
+            _animator.SetBool("Grounded", false);
         }
     }
 
@@ -124,9 +126,9 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {
         _facingRight = !_facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        Vector3 xScale = transform.localScale;
+        xScale.x *= -1;
+        transform.localScale = xScale;
     }
 
 }

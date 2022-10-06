@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour
     private int _currentHealth;
     [SerializeField] protected float _startDazedTime;
     private float _dazedTime;
+    [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
@@ -49,7 +50,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (direction == 0)
         {
             _dazedTime = _startDazedTime;
-            _rb.AddForce(new Vector2(150, 0));
+            _rb.AddForce(new Vector2(_knockbackForce, 0));
             _currentHealth -= 1;
             if (_currentHealth <= 0)
             {
@@ -59,7 +60,7 @@ public abstract class EnemyBase : MonoBehaviour
         else if (direction == 1)
         {
             _dazedTime = _startDazedTime;
-            _rb.AddForce(new Vector2(150, 0));
+            _rb.AddForce(new Vector2(_knockbackForce, 0));
             _currentHealth -= 1;
             if (_currentHealth <= 0)
             {
