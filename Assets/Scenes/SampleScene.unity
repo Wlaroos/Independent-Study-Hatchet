@@ -721,8 +721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 15
   _jumpForce: 25
-  _fallMultiplier: 5
-  _lowJumpMultiplier: 5
+  _fallGravMult: 2.5
+  _jumpGravMult: 2
   _checkGroundRadius: 0.2
   _rememberGroundedFor: 1
   _defaultAdditionalJumps: 0
