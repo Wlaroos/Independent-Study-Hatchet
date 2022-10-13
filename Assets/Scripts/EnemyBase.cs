@@ -17,6 +17,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private Animator Anim;
     private Rigidbody2D _rb;
+    private GameObject _arrowHolder;
+    private List<GameObject> _arrowList = new List<GameObject>();
 
     private void Awake()
     {
@@ -24,6 +26,12 @@ public abstract class EnemyBase : MonoBehaviour
         _speed = _maxSpeed;
         Anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        _arrowHolder = transform.GetChild(0).gameObject;
+    }
+
+    private void Start()
+    {
+        AddArrows();
     }
 
     private void Update()
@@ -40,6 +48,54 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    private void AddArrows()
+    {
+        for (int i = 0; i < _maxHealth; i++)
+        {
+            GameObject arrow = new GameObject("Arrow0" + (i + 1));
+            arrow.transform.parent = _arrowHolder.transform;
+            SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();
+            renderer.sprite = Resources.Load<Sprite>("Arrow");
+
+            if(Random.Range(0, 2) == 0)
+            {
+                renderer.color = Color.magenta;
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                renderer.color = Color.cyan;
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+
+            switch (_maxHealth)
+            {
+                case 1: arrow.transform.localPosition = new Vector3(0, 0.8f, 0); break;
+                case 2:
+                    {
+                        switch (i + 1)
+                        {
+                            case 1: arrow.transform.localPosition = new Vector3(-0.25f, 0.8f, 0); break;
+                            case 2: arrow.transform.localPosition = new Vector3(0.25f, 0.8f, 0); break;
+                        }
+                    }break;
+
+                case 3:
+                    {
+                        switch (i + 1)
+                        {
+                            case 1: arrow.transform.localPosition = new Vector3(-0.425f, 0.8f, 0); break;
+                            case 2: arrow.transform.localPosition = new Vector3(0f, 0.8f, 0); break;
+                            case 3: arrow.transform.localPosition = new Vector3(0.425f, 0.8f, 0); break;
+                        }
+                    }break;
+            }
+
+            _arrowList.Add(arrow);
+        }
+
+    }
+
     protected virtual void Move()
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
@@ -47,21 +103,29 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int direction)
     {
-        if (direction == 0)
+        if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.magenta)
         {
             _dazedTime = _startDazedTime;
             _rb.AddForce(new Vector2(_knockbackForce, 0));
             _currentHealth -= 1;
+
+            _arrowList.RemoveAt(0);
+            Destroy(_arrowHolder.transform.GetChild(0).gameObject);
+
             if (_currentHealth <= 0)
             {
                 Death(0);
             }
         }
-        else if (direction == 1)
+        else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.cyan)
         {
             _dazedTime = _startDazedTime;
             _rb.AddForce(new Vector2(_knockbackForce, 0));
             _currentHealth -= 1;
+
+            _arrowList.RemoveAt(0);
+            Destroy(_arrowHolder.transform.GetChild(0).gameObject);
+
             if (_currentHealth <= 0)
             {
                 Death(1);
