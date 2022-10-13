@@ -5,9 +5,8 @@ using UnityEngine;
 public class Skeleton : EnemyBase
 {
 
-    public override void TestMethod()
+    public override int ArrowDirection()
     {
-        //base.TestMethod();
-        Debug.Log("Skeleton Test");
+        return base.ArrowDirection();
     }
 }

@@ -5,10 +5,8 @@ using UnityEngine;
 public class Goblin : EnemyBase
 {
 
-    public override void TestMethod()
+    public override int ArrowDirection()
     {
-        //base.TestMethod();
-        Debug.Log("Goblin Test");
+        return base.ArrowDirection();
     }
-
 }
