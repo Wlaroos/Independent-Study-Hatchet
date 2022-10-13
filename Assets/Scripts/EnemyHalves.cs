@@ -15,9 +15,12 @@ public class EnemyHalves : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
 
+        // Add random Torque and Force to lauch the body parts -- Blood particles are attached to the halves
         _rb.AddTorque(Random.Range(-randomTorqueAmount, randomTorqueAmount));
         _rb.AddForce( new Vector2(Random.Range(xForce - randomForceAmount, xForce + randomForceAmount), Random.Range(yForce - randomForceAmount, yForce + randomForceAmount)));
 
+
+        // Maybe end up changing this to a coroutine that lerps opacity or size to make it "fade" away
         Invoke(nameof(Delt), destroyDelay);
     }
 

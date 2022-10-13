@@ -724,7 +724,7 @@ MonoBehaviour:
   _fallMultiplier: 5
   _lowJumpMultiplier: 5
   _checkGroundRadius: 0.2
-  _rememberGroundedFor: 0.1
+  _rememberGroundedFor: 1
   _defaultAdditionalJumps: 0
   _isGrounded: 0
   _isAlive: 1

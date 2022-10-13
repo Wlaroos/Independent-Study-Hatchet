@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _speed = 5;
     [SerializeField] float _jumpForce = 5;
-    [SerializeField] float _fallMultiplier = 2.5f;
-    [SerializeField] float _lowJumpMultiplier = 2f;
-    [SerializeField] float _checkGroundRadius = 0.2f;
-    [SerializeField] float _rememberGroundedFor = 0.1f;
-    [SerializeField] int _defaultAdditionalJumps = 0;
+    [SerializeField] float _fallGravMult = 2.5f;         // Gravity while falling
+    [SerializeField] float _jumpGravMult = 2f;           // Gravity while jumping
+    [SerializeField] float _checkGroundRadius = 0.2f;    // Radius of circle check
+    [SerializeField] float _rememberGroundedFor = 0.1f;  // How long after jumping can you jump again
+    [SerializeField] int _defaultAdditionalJumps = 0;    // Extra Jumps
 
     bool _facingRight = true;
     bool _paused = false;
@@ -35,11 +35,13 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+        // Restart Game
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        // Exit Game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             Move();
             Jump();
-            BetterJump();
+            Gravity();
             CheckIfGrounded();
         }
     }
@@ -66,8 +68,10 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("Moving", false);
         }
+
         float moveBy = x * _speed;
         _rb.velocity = new Vector2(moveBy, _rb.velocity.y);
+
         if (_rb.velocity.x > 0 && !_facingRight)  // Moving right, facing left
         {
             Flip(); // Flip right
@@ -80,6 +84,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        // Jumps if player is on the ground or has additional jumps
+        // and they haven't run out of time to call another jump (_rememberGroundedFor)
         if ((Input.GetKeyDown(KeyCode.Space)) && (_isGrounded || Time.time - _lastTimeGrounded <= _rememberGroundedFor && _additionalJumps > 0))
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
@@ -91,7 +97,10 @@ public class PlayerController : MonoBehaviour
 
     void CheckIfGrounded()
     {
+
+        // Checks for collision between the ground layer and a circle collider that is created
         Collider2D colliders = Physics2D.OverlapCircle(_groundChecker.position, _checkGroundRadius, _groundLayer);
+        //Set grounded and resets player jumps
         if (colliders != null)
         {
             _isGrounded = true;
@@ -100,29 +109,35 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Sets _lastTimeGrounded, used to see how long it's been since player has touched the ground
             if (_isGrounded)
             {
                 _lastTimeGrounded = Time.time;
             }
+            // No longer grounded
             _isGrounded = false;
             _animator.SetBool("Grounded", false);
         }
     }
 
-    // Jump higher when holding space
-    void BetterJump()
+    // I currently have both the fall and jump multiplier set to the same value
+    void Gravity()
     {
+        // Gravity While Falling
         if (_rb.velocity.y < 0)
         {
-            _rb.velocity += Vector2.up * Physics2D.gravity * (_fallMultiplier - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity * (_fallGravMult - 1) * Time.deltaTime;
         }
+
+        // Gravity While Jumping
         else if (_rb.velocity.y > 0 )
         {
-            _rb.velocity += Vector2.up * Physics2D.gravity * (_lowJumpMultiplier - 1) * Time.deltaTime;
+            _rb.velocity += Vector2.up * Physics2D.gravity * (_jumpGravMult - 1) * Time.deltaTime;
         }
 
     }
 
+    // Flips player
     private void Flip()
     {
         _facingRight = !_facingRight;

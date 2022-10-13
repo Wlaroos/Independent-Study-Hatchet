@@ -36,6 +36,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void Update()
     {
+        // No movement if enemy is "dazed"
         if (_dazedTime <= 0)
         {
             Move();
@@ -50,24 +51,34 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void AddArrows()
     {
+        // Amount of arrows created is based on how much health the enemy has
         for (int i = 0; i < _maxHealth; i++)
         {
-            GameObject arrow = new GameObject("Arrow0" + (i + 1));
-            arrow.transform.parent = _arrowHolder.transform;
-            SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();
-            renderer.sprite = Resources.Load<Sprite>("Arrow");
+            GameObject arrow = new GameObject("Arrow0" + (i + 1));             // Create the game object and name it
+            arrow.transform.parent = _arrowHolder.transform;                   // Make it a child of the empty holder object
+            SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();    // Add a sprite renderer
+            renderer.sprite = Resources.Load<Sprite>("Arrow");                 // Apply the sprite from the resources folder
 
-            if(Random.Range(0, 2) == 0)
+            // Apply direction for each arrow
+            int dir = ArrowDirection();
+
+            // If "Vertical" change color and rotation
+            if (dir == 0)                                                     
             {
                 renderer.color = Color.magenta;
                 arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else
+            // If "Horizontal" change color and rotation
+            else if (dir == 1)                                                  
             {
                 renderer.color = Color.cyan;
                 arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
             }
 
+            // Change position of arrows based on how many there are
+            //
+            // ---Maybe look into a better way to do this with some sort of sorting or something like a UI Horizontal Layout Group---
+            //
             switch (_maxHealth)
             {
                 case 1: arrow.transform.localPosition = new Vector3(0, 0.8f, 0); break;
@@ -91,67 +102,93 @@ public abstract class EnemyBase : MonoBehaviour
                     }break;
             }
 
+            // Add arrows to the list IN ORDER so that you have to attack in that order
             _arrowList.Add(arrow);
         }
 
     }
 
+    // Shitty translate movement, will be changed
     protected virtual void Move()
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
+
+    // Really need to look into a better way to test if the arrow direction matches the attack direction
+    // Testing color works for now, but it's kinda ugly
     public virtual void TakeDamage(int direction)
     {
+        // If attack direction is vertical AND the first arrow in the list is vertical
         if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.magenta)
         {
-            _dazedTime = _startDazedTime;
-            _rb.AddForce(new Vector2(_knockbackForce, 0));
-            _currentHealth -= 1;
+            DamageFeedback();
 
-            _arrowList.RemoveAt(0);
-            Destroy(_arrowHolder.transform.GetChild(0).gameObject);
-
+            // Vertical Death
             if (_currentHealth <= 0)
             {
                 Death(0);
             }
         }
+
+        // If attack direction is horizontal AND the first arrow in the list is horizontal
         else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.cyan)
         {
-            _dazedTime = _startDazedTime;
-            _rb.AddForce(new Vector2(_knockbackForce, 0));
-            _currentHealth -= 1;
+            DamageFeedback();
 
-            _arrowList.RemoveAt(0);
-            Destroy(_arrowHolder.transform.GetChild(0).gameObject);
-
+            // Horizontal Death
             if (_currentHealth <= 0)
             {
                 Death(1);
             }
         }
+
+        // FOR LATER -- For when the player hits an enemy with the wrong attack direction
+
+/*      else if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color != Color.magenta)
+        {
+
+        }
+        else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color != Color.cyan)
+        {
+
+        }
+*/
+
     }
 
+    private void DamageFeedback()
+    {
+        // Dazed timer, knockback and decrease health
+        _dazedTime = _startDazedTime;
+        _rb.AddForce(new Vector2(_knockbackForce, 0));
+        _currentHealth -= 1;
+
+        // Remove arrow from list and destroy the arrow object
+        _arrowList.RemoveAt(0);
+        Destroy(_arrowHolder.transform.GetChild(0).gameObject);
+        // PUT METHOD TO REORGANIZE ARROW POSITION HERE 
+    }
+
+    // Create enemy halves and candy particles, then destroy
     public void Death(int direction)
     {
         if (direction == 0)
         {
             GameObject verticalHalves = Instantiate(_vertical, transform.position, transform.rotation);
-            Debug.Log("Vertical");
-
         }
         else if (direction == 1)
         {
             GameObject horizontalHalves = Instantiate(_horizontal, transform.position, transform.rotation);
-            Debug.Log("Horizontal");
         }
-        Destroy(gameObject);
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
+        Destroy(gameObject);
     }
 
-    public virtual void TestMethod()
+
+    // Base class is random between vertical and horizontal. Can be overwritten for specific enemies
+    public virtual int ArrowDirection()
     {
-        Debug.Log("EnemyBase TEST");
+        return Random.Range(0, 2);
     }
 }

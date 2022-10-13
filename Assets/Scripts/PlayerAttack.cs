@@ -21,14 +21,18 @@ public class PlayerAttack : MonoBehaviour
     {
         if (_attackDelayTime <= 0)
         {
+            // Left Mouse Button, Vertical Attack
             if (Input.GetMouseButtonDown(0))
             {
+                // Start animation, set direction, start attack delay count
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("AttackDir",0);
                 _attackDelayTime = _maxAttackDelayTime;
             }
+            // Right Mouse Button, Horizontal Attack
             else if (Input.GetMouseButtonDown(1))
             {
+                // Start animation, set direction, start attack delay count
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("AttackDir", 1);
                 _attackDelayTime = _maxAttackDelayTime;

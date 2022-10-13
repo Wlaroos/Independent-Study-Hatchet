@@ -14,6 +14,7 @@ public class PlayerData : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
+    // Candy counter, will be used in HUD / Shop later
     public void Candy(int amount)
     {
         _candyAmount += amount;
