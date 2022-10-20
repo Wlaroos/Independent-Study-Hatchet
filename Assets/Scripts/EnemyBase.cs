@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -157,9 +158,10 @@ public abstract class EnemyBase : MonoBehaviour
         for (int i = 0; i < _maxHealth; i++)
         {
             GameObject arrow = new GameObject("Arrow0" + (i + 1));             // Create the game object and name it
-            arrow.transform.parent = _arrowHolder.transform;                   // Make it a child of the empty holder object
+            arrow.transform.SetParent(_arrowHolder.transform);                 // Make it a child of the empty holder object
             SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();    // Add a sprite renderer
-            renderer.sprite = Resources.Load<Sprite>("Arrow");                 // Apply the sprite from the resources folder
+            arrow.AddComponent<LayoutElement>();                               // Add a layout element (Allows Sorting)
+            renderer.sprite = Resources.Load<Sprite>("Arrow");                 // Apply the sprite from the resources folder'
 
             // Apply direction for each arrow
             int dir = ArrowDirection();
@@ -175,35 +177,6 @@ public abstract class EnemyBase : MonoBehaviour
             {
                 renderer.color = Color.cyan;
                 arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
-            }
-
-            // Change position of arrows based on how many there are
-            //
-            // ---Maybe look into a better way to do this with some sort of sorting or something like a UI Horizontal Layout Group---
-            //
-            switch (_maxHealth)
-            {
-                case 1: arrow.transform.localPosition = new Vector3(0, 0.8f, 0); break;
-                case 2:
-                    {
-                        switch (i + 1)
-                        {
-                            case 1: arrow.transform.localPosition = new Vector3(-0.25f, 0.8f, 0); break;
-                            case 2: arrow.transform.localPosition = new Vector3(0.25f, 0.8f, 0); break;
-                        }
-                    }
-                    break;
-
-                case 3:
-                    {
-                        switch (i + 1)
-                        {
-                            case 1: arrow.transform.localPosition = new Vector3(-0.425f, 0.8f, 0); break;
-                            case 2: arrow.transform.localPosition = new Vector3(0f, 0.8f, 0); break;
-                            case 3: arrow.transform.localPosition = new Vector3(0.425f, 0.8f, 0); break;
-                        }
-                    }
-                    break;
             }
 
             // Add arrows to the list IN ORDER so that you have to attack in that order
