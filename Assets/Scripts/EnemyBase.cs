@@ -5,38 +5,48 @@ using UnityEngine.UI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+
+    // Movement/Health Variables
     [SerializeField] protected float _maxSpeed = 5f;
     private float _speed;
+    [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
-    [SerializeField] protected float _startDazedTime;
-    private float _dazedTime;
+
+    // Dazed and iFrame variables
+    [SerializeField] protected float _startDazedTime = 0.5f;
     private bool _dazed = false;
-    [SerializeField] protected int _knockbackForce = 150;
+    private float numOfFlashes = 4;
+    private Color flashColor = Color.red;
+
+    // Prefab variables
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
 
+    // Component/Object Variables
+    private Animator _anim;
     private SpriteRenderer _sr;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
 
-    float numOfFlashes = 4;
-    Color flashColor = new Color(1, 0, 0, .5f);
-
     private void Awake()
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        _sr = GetComponent<SpriteRenderer>();
+        _sr = transform.Find("EnemyArt").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
-        _arrowHolder = transform.GetChild(0).gameObject;
+        _arrowHolder = transform.Find("ArrowHolder").gameObject;
+        _anim = transform.Find("EnemyArt").GetComponent<Animator>();
     }
 
     private void Start()
     {
+        // Create arrows as soon as game starts
         AddArrows();
+        // Start idle animation at random location so enemies don't move in sync
+        _anim.Play(0,0,Random.value);
     }
 
     private void Update()
