@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
+    // Event Variables
+    public event Action PlayerDamage;
+
+    // Health Variables
+    [SerializeField] int _maxHealth = 10;
+    int _currentHealth;
+    public int MaxHealth => _maxHealth;
+    public int CurrentHealth => _currentHealth;
+
+    //Movement Variables
     [SerializeField] float _speed = 5;
     [SerializeField] float _jumpForce = 5;
     [SerializeField] float _fallGravMult = 2.5f;         // Gravity while falling
@@ -14,6 +25,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _rememberGroundedFor = 0.1f;  // How long after jumping can you jump again
     [SerializeField] int _defaultAdditionalJumps = 0;    // Extra Jumps
 
+    // iFrame Variables
+    [SerializeField] float _iFrameDuration;
+    bool _invincible;
+    private float numOfFlashes = 4;
+    private Color flashColor = Color.red;
+
+    // Movement State Variables
     bool _facingRight = true;
     bool _paused = false;
     int _additionalJumps = 0;
@@ -21,13 +39,19 @@ public class PlayerController : MonoBehaviour
     public bool _isGrounded = false;
     public bool _isAlive = true;
 
+    // References
     [SerializeField] Transform _groundChecker;
     [SerializeField] LayerMask _groundLayer;
+    [SerializeField] ParticleSystem _damagedParticles;
+    [SerializeField] AudioClip _damagedSFX;
+    SpriteRenderer _sr;
     Rigidbody2D _rb;
     Animator _animator;
 
     private void Awake()
     {
+        _currentHealth = _maxHealth;
+        _sr = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _facingRight = true;
@@ -45,6 +69,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        // Test for getting damaged
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DecreaseHealth(1);
         }
 
         // No player interactivity in the tutorial
@@ -144,6 +174,69 @@ public class PlayerController : MonoBehaviour
         Vector3 xScale = transform.localScale;
         xScale.x *= -1;
         transform.localScale = xScale;
+    }
+
+    public void DecreaseHealth(int amount)
+    {
+        if (_invincible == false)
+        {
+            _currentHealth -= amount;
+            // Starts iFrame coroutine
+            StartCoroutine(IFrameCoroutine(_iFrameDuration));
+            // Sends out event message
+            PlayerDamage?.Invoke();
+            // Particles/Sound
+            DamageFeedback();
+        }
+
+        if(_currentHealth <= 0)
+        {
+            Kill();
+        }
+    }
+
+    // Duration is set to the value of _delayStartTime
+    private IEnumerator IFrameCoroutine(float duration)
+    {
+        // Damage from occuring
+        _invincible = true;
+
+        // Timer and flash setup
+        float timestamp = Time.time + duration;
+        Color defaultColor = _sr.color;
+        bool flash = false;
+
+        // While loop for duration
+        while (Time.time < timestamp)
+        {
+            // If flash is true, set color to flash color, otherwise set color back to default
+            _sr.color = flash ? flashColor : defaultColor;
+            flash = !flash;
+            yield return new WaitForSeconds(duration / numOfFlashes);
+        }
+
+        // Reset values after duration
+        _sr.color = defaultColor;
+        _invincible = false;
+    }
+
+    private void DamageFeedback()
+    {
+        //particles
+        if (_damagedParticles != null)
+        {
+            _damagedParticles = Instantiate(_damagedParticles, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+        }
+        //audio
+        if (_damagedSFX != null)
+        {
+            AudioHelper.PlayClip2D(_damagedSFX, 1f);
+        }
+    }
+
+    public void Kill()
+    {
+        gameObject.SetActive(false);
     }
 
 }

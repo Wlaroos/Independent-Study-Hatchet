@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class CharRef : MonoBehaviour
+public class CandyPickup : MonoBehaviour
 {
 
     // THIS SCRIPT IS ON THE CANDY PARTICLE PREFAB
     //
     // ALLOWS INTERACTION WITH CANDY PARTICLES AND PLAYER
 
-    [SerializeField] PlayerData _player;
+    [SerializeField] HUDController _HUDref;
 
     [SerializeField] int _candyValue = 1;
 
@@ -20,8 +21,8 @@ public class CharRef : MonoBehaviour
     private void Awake()
     {
         ps = transform.GetComponent<ParticleSystem>();
-        _player = FindObjectOfType<PlayerData>();
-        GetComponent<ParticleSystem>().trigger.SetCollider(0, _player.gameObject.transform);
+        _HUDref = FindObjectOfType<HUDController>();
+        GetComponent<ParticleSystem>().trigger.SetCollider(0, _HUDref.gameObject.transform);
     }
 
 
@@ -39,7 +40,7 @@ public class CharRef : MonoBehaviour
             // Changes lifetime of the particle
             p.remainingLifetime = 0;
             // Add amount to player's candy count
-            _player.Candy(_candyValue);
+            _HUDref.AddCandy(_candyValue);
             // Applies local referece changes to the particle in the list
             _particles[i] = p;
         }
