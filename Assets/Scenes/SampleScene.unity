@@ -387,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 1
   _maxHealth: 1
-  _startDazedTime: 1
+  _startDazedTime: 0.5
   _knockbackForce: 150
   _horizontal: {fileID: 2906169883122391982, guid: 00de36e6437ab1c4b9a2943d2f5a5477,
     type: 3}
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 1
   _maxHealth: 1
-  _startDazedTime: 1
+  _startDazedTime: 0.5
   _knockbackForce: 150
   _horizontal: {fileID: 2906169883122391982, guid: 00de36e6437ab1c4b9a2943d2f5a5477,
     type: 3}
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 1
   _maxHealth: 2
-  _startDazedTime: 1
+  _startDazedTime: 0.5
   _knockbackForce: 150
   _horizontal: {fileID: 2906169883122391982, guid: 00de36e6437ab1c4b9a2943d2f5a5477,
     type: 3}
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 15
   _jumpForce: 25
-  _fallGravMult: 2.5
-  _jumpGravMult: 2
+  _fallGravMult: 5
+  _jumpGravMult: 5
   _checkGroundRadius: 0.2
   _rememberGroundedFor: 1
   _defaultAdditionalJumps: 0
@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 1
   _maxHealth: 3
-  _startDazedTime: 1
+  _startDazedTime: 0.5
   _knockbackForce: 150
   _horizontal: {fileID: 2906169883122391982, guid: 00de36e6437ab1c4b9a2943d2f5a5477,
     type: 3}
@@ -3024,7 +3024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 1
   _maxHealth: 1
-  _startDazedTime: 1
+  _startDazedTime: 0.5
   _knockbackForce: 150
   _horizontal: {fileID: 2906169883122391982, guid: 00de36e6437ab1c4b9a2943d2f5a5477,
     type: 3}

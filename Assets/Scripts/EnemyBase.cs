@@ -10,21 +10,25 @@ public abstract class EnemyBase : MonoBehaviour
     private int _currentHealth;
     [SerializeField] protected float _startDazedTime;
     private float _dazedTime;
+    private bool _dazed = false;
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
 
-    private Animator Anim;
+    private SpriteRenderer _sr;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
+
+    float numOfFlashes = 4;
+    Color flashColor = new Color(1, 0, 0, .5f);
 
     private void Awake()
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        Anim = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.GetChild(0).gameObject;
     }
@@ -37,73 +41,9 @@ public abstract class EnemyBase : MonoBehaviour
     private void Update()
     {
         // No movement if enemy is "dazed"
-        if (_dazedTime <= 0)
+        if (_dazed == false)
         {
             Move();
-            _speed = _maxSpeed;
-        }
-        else
-        {
-            _speed = 0;
-            _dazedTime -= Time.deltaTime;
-        }
-    }
-
-    private void AddArrows()
-    {
-        // Amount of arrows created is based on how much health the enemy has
-        for (int i = 0; i < _maxHealth; i++)
-        {
-            GameObject arrow = new GameObject("Arrow0" + (i + 1));             // Create the game object and name it
-            arrow.transform.parent = _arrowHolder.transform;                   // Make it a child of the empty holder object
-            SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();    // Add a sprite renderer
-            renderer.sprite = Resources.Load<Sprite>("Arrow");                 // Apply the sprite from the resources folder
-
-            // Apply direction for each arrow
-            int dir = ArrowDirection();
-
-            // If "Vertical" change color and rotation
-            if (dir == 0)                                                     
-            {
-                renderer.color = Color.magenta;
-                arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            // If "Horizontal" change color and rotation
-            else if (dir == 1)                                                  
-            {
-                renderer.color = Color.cyan;
-                arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
-            }
-
-            // Change position of arrows based on how many there are
-            //
-            // ---Maybe look into a better way to do this with some sort of sorting or something like a UI Horizontal Layout Group---
-            //
-            switch (_maxHealth)
-            {
-                case 1: arrow.transform.localPosition = new Vector3(0, 0.8f, 0); break;
-                case 2:
-                    {
-                        switch (i + 1)
-                        {
-                            case 1: arrow.transform.localPosition = new Vector3(-0.25f, 0.8f, 0); break;
-                            case 2: arrow.transform.localPosition = new Vector3(0.25f, 0.8f, 0); break;
-                        }
-                    }break;
-
-                case 3:
-                    {
-                        switch (i + 1)
-                        {
-                            case 1: arrow.transform.localPosition = new Vector3(-0.425f, 0.8f, 0); break;
-                            case 2: arrow.transform.localPosition = new Vector3(0f, 0.8f, 0); break;
-                            case 3: arrow.transform.localPosition = new Vector3(0.425f, 0.8f, 0); break;
-                        }
-                    }break;
-            }
-
-            // Add arrows to the list IN ORDER so that you have to attack in that order
-            _arrowList.Add(arrow);
         }
 
     }
@@ -114,13 +54,12 @@ public abstract class EnemyBase : MonoBehaviour
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
-
     // Really need to look into a better way to test if the arrow direction matches the attack direction
     // Testing color works for now, but it's kinda ugly
     public virtual void TakeDamage(int direction)
     {
         // If attack direction is vertical AND the first arrow in the list is vertical
-        if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.magenta)
+        if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.magenta && _dazed == false)
         {
             DamageFeedback();
 
@@ -132,7 +71,7 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         // If attack direction is horizontal AND the first arrow in the list is horizontal
-        else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.cyan)
+        else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color == Color.cyan && _dazed == false)
         {
             DamageFeedback();
 
@@ -159,8 +98,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void DamageFeedback()
     {
-        // Dazed timer, knockback and decrease health
-        _dazedTime = _startDazedTime;
+        // Dazed coroutine, knockback and decrease health
+        StartCoroutine(IFrameCoroutine(_startDazedTime));
         _rb.AddForce(new Vector2(_knockbackForce, 0));
         _currentHealth -= 1;
 
@@ -185,6 +124,93 @@ public abstract class EnemyBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Duration is set to the value of _delayStartTime
+    private IEnumerator IFrameCoroutine(float duration)
+    {
+        // Stops movement and damage from occuring
+        _speed = 0; 
+        _dazed = true;
+
+        // Timer and flash setup
+        float timestamp = Time.time + duration;
+        Color defaultColor = _sr.color;
+        bool flash = false;
+
+        // While loop for duration
+        while (Time.time < timestamp)   
+        {
+            // If flash is true, set color to flash color, otherwise set color back to default
+            _sr.color = flash ? flashColor : defaultColor;
+            flash = !flash;
+            yield return new WaitForSeconds(duration / numOfFlashes);
+        }
+
+        // Reset values after duration
+        _sr.color = defaultColor;
+        _dazed = false;
+        _speed = _maxSpeed;
+    }
+
+    private void AddArrows()
+    {
+        // Amount of arrows created is based on how much health the enemy has
+        for (int i = 0; i < _maxHealth; i++)
+        {
+            GameObject arrow = new GameObject("Arrow0" + (i + 1));             // Create the game object and name it
+            arrow.transform.parent = _arrowHolder.transform;                   // Make it a child of the empty holder object
+            SpriteRenderer renderer = arrow.AddComponent<SpriteRenderer>();    // Add a sprite renderer
+            renderer.sprite = Resources.Load<Sprite>("Arrow");                 // Apply the sprite from the resources folder
+
+            // Apply direction for each arrow
+            int dir = ArrowDirection();
+
+            // If "Vertical" change color and rotation
+            if (dir == 0)
+            {
+                renderer.color = Color.magenta;
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            // If "Horizontal" change color and rotation
+            else if (dir == 1)
+            {
+                renderer.color = Color.cyan;
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+
+            // Change position of arrows based on how many there are
+            //
+            // ---Maybe look into a better way to do this with some sort of sorting or something like a UI Horizontal Layout Group---
+            //
+            switch (_maxHealth)
+            {
+                case 1: arrow.transform.localPosition = new Vector3(0, 0.8f, 0); break;
+                case 2:
+                    {
+                        switch (i + 1)
+                        {
+                            case 1: arrow.transform.localPosition = new Vector3(-0.25f, 0.8f, 0); break;
+                            case 2: arrow.transform.localPosition = new Vector3(0.25f, 0.8f, 0); break;
+                        }
+                    }
+                    break;
+
+                case 3:
+                    {
+                        switch (i + 1)
+                        {
+                            case 1: arrow.transform.localPosition = new Vector3(-0.425f, 0.8f, 0); break;
+                            case 2: arrow.transform.localPosition = new Vector3(0f, 0.8f, 0); break;
+                            case 3: arrow.transform.localPosition = new Vector3(0.425f, 0.8f, 0); break;
+                        }
+                    }
+                    break;
+            }
+
+            // Add arrows to the list IN ORDER so that you have to attack in that order
+            _arrowList.Add(arrow);
+        }
+
+    }
 
     // Base class is random between vertical and horizontal. Can be overwritten for specific enemies
     public virtual int ArrowDirection()
