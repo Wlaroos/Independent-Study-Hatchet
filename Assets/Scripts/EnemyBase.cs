@@ -27,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Component/Object Variables
     private Animator _anim;
-    private SpriteRenderer _sr;
+    private GameObject _art;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
@@ -36,8 +36,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        // Find a way to change color of psb file instead of sprite renderer
-        //_sr = transform.Find("EnemyArt").GetComponent<SpriteRenderer>();
+        _art = transform.Find("EnemyArt").gameObject;
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.Find("ArrowHolder").gameObject;
         _anim = transform.Find("EnemyArt").GetComponent<Animator>();
@@ -162,8 +161,7 @@ public abstract class EnemyBase : MonoBehaviour
         // Timer and flash setup
         float timestamp = Time.time + duration;
 
-        //Color defaultColor = _sr.color;           // Until I fix the _sr
-        Color defaultColor = Color.white;
+        Color defaultColor = _art.GetComponentInChildren<SpriteRenderer>().color;   
 
         bool flash = false;
 
@@ -171,13 +169,19 @@ public abstract class EnemyBase : MonoBehaviour
         while (Time.time < timestamp)   
         {
             // If flash is true, set color to flash color, otherwise set color back to default
-            //_sr.color = flash ? flashColor : defaultColor;                // Until I fix the _sr
+            foreach (SpriteRenderer sr in _art.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.color = flash ? flashColor : defaultColor;
+            }
             flash = !flash;
             yield return new WaitForSeconds(duration / numOfFlashes);
         }
 
         // Reset values after duration
-        //_sr.color = defaultColor;                     // Until I fix the _sr
+        foreach (SpriteRenderer sr in _art.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.color = defaultColor;
+        }                  
         _dazed = false;
         _speed = _maxSpeed;
     }
