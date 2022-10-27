@@ -943,9 +943,11 @@ MonoBehaviour:
   _checkGroundRadius: 0.2
   _rememberGroundedFor: 1
   _defaultAdditionalJumps: 0
+  _knockbackForce: 15
   _iFrameDuration: 1
   _isGrounded: 0
   _isAlive: 1
+  _isKnockedBack: 0
   _groundChecker: {fileID: 83806037}
   _groundLayer:
     serializedVersion: 2
@@ -3888,6 +3890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642276126611428283, guid: 2fcea11eb704c2c4ab68001a742573b4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fcea11eb704c2c4ab68001a742573b4, type: 3}

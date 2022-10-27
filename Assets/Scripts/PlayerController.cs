@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _checkGroundRadius = 0.2f;    // Radius of circle check
     [SerializeField] float _rememberGroundedFor = 0.1f;  // How long after jumping can you jump again
     [SerializeField] int _defaultAdditionalJumps = 0;    // Extra Jumps
+    [SerializeField] float _knockbackForce = 15;
 
     // iFrame Variables
     [SerializeField] float _iFrameDuration;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     float _lastTimeGrounded;
     public bool _isGrounded = false;
     public bool _isAlive = true;
+    public bool _isKnockedBack = false;
 
     // References
     [SerializeField] Transform _groundChecker;
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
         // Test for getting damaged
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            DecreaseHealth(1);
+            DecreaseHealth(1, transform.forward.x);
         }
 
         // No player interactivity in the tutorial
@@ -89,26 +91,33 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        if(x != 0)
+        if (_isKnockedBack == false)
         {
-            _animator.SetBool("Moving", true);
-        }
-        else
-        {
-            _animator.SetBool("Moving", false);
-        }
+            float x = Input.GetAxisRaw("Horizontal");
+            if (x != 0)
+            {
+                _animator.SetBool("Moving", true);
+            }
+            else
+            {
+                _animator.SetBool("Moving", false);
+            }
 
-        float moveBy = x * _speed;
-        _rb.velocity = new Vector2(moveBy, _rb.velocity.y);
+            float moveBy = x * _speed;
+            _rb.velocity = new Vector2(moveBy, _rb.velocity.y);
 
-        if (_rb.velocity.x > 0 && !_facingRight)  // Moving right, facing left
-        {
-            Flip(); // Flip right
+            if (_rb.velocity.x > 0 && !_facingRight)  // Moving right, facing left
+            {
+                Flip(); // Flip right
+            }
+            else if (_rb.velocity.x < 0 && _facingRight) // Moving left, facing right
+            {
+                Flip(); // Flip left
+            }
         }
-        else if (_rb.velocity.x < 0 && _facingRight) // Moving left, facing right
+        else if (_isKnockedBack == true && _rb.velocity.magnitude <= 0.01f)
         {
-            Flip(); // Flip left
+            _isKnockedBack = false;
         }
     }
 
@@ -176,10 +185,17 @@ public class PlayerController : MonoBehaviour
         transform.localScale = xScale;
     }
 
-    public void DecreaseHealth(int amount)
+    public void DecreaseHealth(int amount, float knockDirection)
     {
         if (_invincible == false)
         {
+
+            // Stops setting the player's velocity directly until the knockback is resolved
+            _isKnockedBack = true;
+
+            // Replace 1 with facing direction of enemy
+            _rb.velocity = new Vector2(knockDirection * _knockbackForce / 2, transform.up.y * _knockbackForce);
+
             _currentHealth -= amount;
             // Starts iFrame coroutine
             StartCoroutine(IFrameCoroutine(_iFrameDuration));

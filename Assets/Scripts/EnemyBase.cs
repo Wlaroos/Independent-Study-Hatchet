@@ -65,6 +65,17 @@ public abstract class EnemyBase : MonoBehaviour
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.GetComponent<PlayerController>() != null)
+        {
+            int dir;
+            if (transform.forward.x == 1) dir = 1; else dir = -1;
+
+            collision.transform.GetComponent<PlayerController>().DecreaseHealth(1, dir);
+        }
+    }
+
     // Really need to look into a better way to test if the arrow direction matches the attack direction
     // Testing color works for now, but it's kinda ugly
     public virtual void TakeDamage(int direction)
