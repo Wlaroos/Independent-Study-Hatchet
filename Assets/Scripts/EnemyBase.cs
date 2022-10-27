@@ -12,6 +12,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
+    [SerializeField] protected int _contactDamage = 1;
 
     // Dazed and iFrame variables
     [SerializeField] protected float _startDazedTime = 0.5f;
@@ -66,14 +67,18 @@ public abstract class EnemyBase : MonoBehaviour
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<PlayerController>() != null)
+
+        PlayerController playerRef = collision.gameObject.transform.GetComponent<PlayerController>();
+
+        // If they touch the player, decrease health and give direction for knockback (Direction enemy is facing)
+        if (playerRef != null)
         {
             int dir;
             if (transform.forward.x == 1) dir = 1; else dir = -1;
 
-            collision.transform.GetComponent<PlayerController>().DecreaseHealth(1, dir);
+            playerRef.DecreaseHealth(_contactDamage, dir);
         }
     }
 
