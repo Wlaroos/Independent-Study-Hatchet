@@ -35,7 +35,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        _sr = transform.Find("EnemyArt").GetComponent<SpriteRenderer>();
+        // Find a way to change color of psb file instead of sprite renderer
+        //_sr = transform.Find("EnemyArt").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.Find("ArrowHolder").gameObject;
         _anim = transform.Find("EnemyArt").GetComponent<Animator>();
@@ -155,20 +156,23 @@ public abstract class EnemyBase : MonoBehaviour
 
         // Timer and flash setup
         float timestamp = Time.time + duration;
-        Color defaultColor = _sr.color;
+
+        //Color defaultColor = _sr.color;           // Until I fix the _sr
+        Color defaultColor = Color.white;
+
         bool flash = false;
 
         // While loop for duration
         while (Time.time < timestamp)   
         {
             // If flash is true, set color to flash color, otherwise set color back to default
-            _sr.color = flash ? flashColor : defaultColor;
+            //_sr.color = flash ? flashColor : defaultColor;                // Until I fix the _sr
             flash = !flash;
             yield return new WaitForSeconds(duration / numOfFlashes);
         }
 
         // Reset values after duration
-        _sr.color = defaultColor;
+        //_sr.color = defaultColor;                     // Until I fix the _sr
         _dazed = false;
         _speed = _maxSpeed;
     }

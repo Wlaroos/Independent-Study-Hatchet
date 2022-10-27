@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblin : EnemyBase
+public class Werewolf : EnemyBase
 {
 
     public override int ArrowDirection()
