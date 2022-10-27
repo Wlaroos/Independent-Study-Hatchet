@@ -17,8 +17,8 @@ public abstract class EnemyBase : MonoBehaviour
     // Dazed and iFrame variables
     [SerializeField] protected float _startDazedTime = 0.5f;
     private bool _dazed = false;
-    private float numOfFlashes = 4;
-    private Color flashColor = Color.red;
+    private float numOfFlashes = 6;
+    private Color flashColor = new Color32(255, 75, 75, 255);
 
     // Prefab variables
     [SerializeField] GameObject _horizontal;
@@ -27,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Component/Object Variables
     private Animator _anim;
-    private GameObject _art;
+    private GameObject _artHolder;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
@@ -36,7 +36,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        _art = transform.Find("EnemyArt").gameObject;
+        _artHolder = transform.Find("EnemyArt").gameObject;
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.Find("ArrowHolder").gameObject;
         _anim = transform.Find("EnemyArt").GetComponent<Animator>();
@@ -161,7 +161,7 @@ public abstract class EnemyBase : MonoBehaviour
         // Timer and flash setup
         float timestamp = Time.time + duration;
 
-        Color defaultColor = _art.GetComponentInChildren<SpriteRenderer>().color;   
+        Color defaultColor = _artHolder.GetComponentInChildren<SpriteRenderer>().color;   
 
         bool flash = false;
 
@@ -169,7 +169,7 @@ public abstract class EnemyBase : MonoBehaviour
         while (Time.time < timestamp)   
         {
             // If flash is true, set color to flash color, otherwise set color back to default
-            foreach (SpriteRenderer sr in _art.GetComponentsInChildren<SpriteRenderer>())
+            foreach (SpriteRenderer sr in _artHolder.GetComponentsInChildren<SpriteRenderer>())
             {
                 sr.color = flash ? flashColor : defaultColor;
             }
@@ -178,7 +178,7 @@ public abstract class EnemyBase : MonoBehaviour
         }
 
         // Reset values after duration
-        foreach (SpriteRenderer sr in _art.GetComponentsInChildren<SpriteRenderer>())
+        foreach (SpriteRenderer sr in _artHolder.GetComponentsInChildren<SpriteRenderer>())
         {
             sr.color = defaultColor;
         }                  

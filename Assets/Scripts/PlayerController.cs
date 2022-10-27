@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     // iFrame Variables
     [SerializeField] float _iFrameDuration;
     bool _invincible;
-    private float numOfFlashes = 4;
-    private Color flashColor = Color.red;
+    private float numOfFlashes = 8;
+    private Color flashColor = new Color32(255,75,75,255);
 
     // Movement State Variables
     bool _facingRight = true;
@@ -46,14 +46,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] ParticleSystem _damagedParticles;
     [SerializeField] AudioClip _damagedSFX;
-    SpriteRenderer _sr;
+    GameObject _artHolder;
     Rigidbody2D _rb;
     Animator _animator;
 
     private void Awake()
     {
         _currentHealth = _maxHealth;
-        _sr = GetComponent<SpriteRenderer>();
+        _artHolder = transform.Find("HoboSide").gameObject;
         _rb = GetComponent<Rigidbody2D>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _facingRight = true;
@@ -219,20 +219,26 @@ public class PlayerController : MonoBehaviour
 
         // Timer and flash setup
         float timestamp = Time.time + duration;
-        Color defaultColor = _sr.color;
+        Color defaultColor = _artHolder.GetComponentInChildren<SpriteRenderer>().color;
         bool flash = false;
 
         // While loop for duration
         while (Time.time < timestamp)
         {
             // If flash is true, set color to flash color, otherwise set color back to default
-            _sr.color = flash ? flashColor : defaultColor;
+            foreach (SpriteRenderer sr in _artHolder.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.color = flash ? flashColor : defaultColor;
+            }
             flash = !flash;
             yield return new WaitForSeconds(duration / numOfFlashes);
         }
 
         // Reset values after duration
-        _sr.color = defaultColor;
+        foreach (SpriteRenderer sr in _artHolder.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.color = defaultColor;
+        }
         _invincible = false;
     }
 
