@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _checkGroundRadius = 0.2f;    // Radius of circle check
     [SerializeField] float _rememberGroundedFor = 0.1f;  // How long after jumping can you jump again
     [SerializeField] int _defaultAdditionalJumps = 0;    // Extra Jumps
-    [SerializeField] float _knockbackForce = 15;
+    [SerializeField] float _knockbackForce = 10;
 
     // iFrame Variables
     [SerializeField] float _iFrameDuration;
@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     float _lastTimeGrounded;
     public bool _isGrounded = false;
     public bool _isAlive = true;
-    public bool _isKnockedBack = false;
 
     // References
     [SerializeField] Transform _groundChecker;
@@ -53,9 +52,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
-        _artHolder = transform.Find("HoboSide").gameObject;
+        _artHolder = transform.GetChild(0).gameObject;
         _rb = GetComponent<Rigidbody2D>();
-        _animator = transform.GetChild(0).GetComponent<Animator>();
+        _animator = _artHolder.GetComponent<Animator>();
         _facingRight = true;
     }
 
@@ -73,13 +72,7 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
         }
 
-        // Test for getting damaged
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DecreaseHealth(1, transform.forward.x);
-        }
-
-        // No player interactivity in the tutorial
+        // Stops player interactivity if paused or dead
         if (_isAlive == true && _paused == false)
         {
             Move();
@@ -87,12 +80,16 @@ public class PlayerController : MonoBehaviour
             Gravity();
             CheckIfGrounded();
         }
+
+        // Player control is taken away after being hit and given back after stopping on the ground
+        if (_paused == true && _rb.velocity.magnitude <= 0.01f)
+        {
+            _paused = false;
+        }
     }
 
     void Move()
     {
-        if (_isKnockedBack == false)
-        {
             float x = Input.GetAxisRaw("Horizontal");
             if (x != 0)
             {
@@ -114,11 +111,6 @@ public class PlayerController : MonoBehaviour
             {
                 Flip(); // Flip left
             }
-        }
-        else if (_isKnockedBack == true && _rb.velocity.magnitude <= 0.01f)
-        {
-            _isKnockedBack = false;
-        }
     }
 
     void Jump()
@@ -190,10 +182,10 @@ public class PlayerController : MonoBehaviour
         if (_invincible == false)
         {
 
-            // Stops setting the player's velocity directly until the knockback is resolved
-            _isKnockedBack = true;
+            // Stops setting the player's velocity directly until the knockback is resolved (Hit ground)
+            _paused = true;
 
-            // Replace 1 with facing direction of enemy
+            // Knocked back into the air and in the x direction the enemy hit you from
             _rb.velocity = new Vector2(knockDirection * _knockbackForce / 2, transform.up.y * _knockbackForce);
 
             _currentHealth -= amount;

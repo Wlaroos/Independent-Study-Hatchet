@@ -36,10 +36,10 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
-        _artHolder = transform.Find("EnemyArt").gameObject;
+        _artHolder = transform.GetChild(0).gameObject;
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.Find("ArrowHolder").gameObject;
-        _anim = transform.Find("EnemyArt").GetComponent<Animator>();
+        _anim = _artHolder.GetComponent<Animator>();
     }
 
     private void Start()

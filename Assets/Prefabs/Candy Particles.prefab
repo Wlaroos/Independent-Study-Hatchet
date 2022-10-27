@@ -227,20 +227,20 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.67356336, b: 0.2783019, a: 1}
-        key1: {r: 1, g: 0.9931743, b: 0.4198113, a: 1}
+        key1: {r: 1, g: 0.9925421, b: 0.4481132, a: 1}
         key2: {r: 0, g: 1, b: 0.4860363, a: 0}
         key3: {r: 0.2819316, g: 0.23113209, b: 1, a: 0}
         key4: {r: 1, g: 0.4009434, b: 0.92247504, a: 0}
-        key5: {r: 1, g: 0, b: 0.8691969, a: 0}
-        key6: {r: 1, g: 0, b: 0.8691969, a: 0}
-        key7: {r: 1, g: 0, b: 0.8691969, a: 0}
+        key5: {r: 0.9811321, g: 0.254539, b: 0.29008925, a: 0}
+        key6: {r: 0.5299505, g: 1, b: 0.39999998, a: 0}
+        key7: {r: 0.25, g: 1, b: 0.9647059, a: 0}
         ctime0: 13107
-        ctime1: 26214
-        ctime2: 39321
-        ctime3: 52428
-        ctime4: 65535
-        ctime5: 65535
-        ctime6: 65535
+        ctime1: 19661
+        ctime2: 26214
+        ctime3: 32768
+        ctime4: 39321
+        ctime5: 52428
+        ctime6: 58982
         ctime7: 65535
         atime0: 0
         atime1: 65535
@@ -251,7 +251,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 1
-        m_NumColorKeys: 5
+        m_NumColorKeys: 8
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -4826,5 +4826,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825d26dcbbf6636499c43e895a48ed01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _HUDref: {fileID: 0}
   _candyValue: 1

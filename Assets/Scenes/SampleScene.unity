@@ -307,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83806036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.255, y: -0.978, z: 0}
+  m_LocalPosition: {x: -0.255, y: -1.228, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 240081041}
@@ -405,7 +405,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.25, y: -0.02}
-  m_Size: {x: 0.98, y: 2.25}
+  m_Size: {x: 0.98, y: 2.5}
   m_Direction: 0
 --- !u!114 &240081039
 MonoBehaviour:
@@ -427,11 +427,10 @@ MonoBehaviour:
   _checkGroundRadius: 0.2
   _rememberGroundedFor: 1
   _defaultAdditionalJumps: 0
-  _knockbackForce: 15
+  _knockbackForce: 10
   _iFrameDuration: 1
   _isGrounded: 0
   _isAlive: 1
-  _isKnockedBack: 0
   _groundChecker: {fileID: 83806037}
   _groundLayer:
     serializedVersion: 2
@@ -728,7 +727,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -752,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -2.06, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1101,6 +1100,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _contactDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _knockbackForce
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a79e3c3774bc524cbb595fc0164eb1a, type: 3}
 --- !u!4 &889982877 stripped
@@ -1428,6 +1437,11 @@ PrefabInstance:
       propertyPath: _maxHealth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1736879066279269156, guid: 8f7d08c7cc078f04ca23da570f67beac,
+        type: 3}
+      propertyPath: _contactDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6840855856676855111, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}
       propertyPath: m_IsActive
@@ -1715,6 +1729,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _contactDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _knockbackForce
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a79e3c3774bc524cbb595fc0164eb1a, type: 3}
@@ -2790,6 +2814,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.000000108984075
       objectReference: {fileID: 0}
+    - target: {fileID: 1736879066279269156, guid: 8f7d08c7cc078f04ca23da570f67beac,
+        type: 3}
+      propertyPath: _contactDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8067400588804009306, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}
       propertyPath: m_Name
@@ -3108,6 +3137,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.00000002103004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _contactDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
+        type: 3}
+      propertyPath: _knockbackForce
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5179393251177250645, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
