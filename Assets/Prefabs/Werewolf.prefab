@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5}
+  m_Size: {x: 0.75, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &8143332970661603357
 Animator:
@@ -235,6 +235,7 @@ MonoBehaviour:
   _maxSpeed: 1
   _knockbackForce: 150
   _maxHealth: 3
+  _contactDamage: 1
   _startDazedTime: 0.5
   _horizontal: {fileID: 2906169883122391982, guid: d2ccb213de70d4643b48e12f910cb0ab,
     type: 3}
