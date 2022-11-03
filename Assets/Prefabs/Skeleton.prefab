@@ -215,6 +215,13 @@ MonoBehaviour:
     type: 3}
   _candyParticle: {fileID: 4997022307666970876, guid: 7cba7e635148ee24ba1711cada1ac777,
     type: 3}
+  _damagedSFX:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _deathSFX:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3792065169492774577
 GameObject:
   m_ObjectHideFlags: 0

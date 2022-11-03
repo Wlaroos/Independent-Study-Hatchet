@@ -34,17 +34,7 @@ public static class AudioHelper
         audioSource.clip = clip;
         audioSource.volume = volume;
 
-        if (audioSource.clip.name == "Exploration_01")
-        {
-            audioSource.loop = true;
-        }
-
         audioSource.Play();
-
-        if (audioSource.clip.name != "Exploration_01")
-        {
-            Object.Destroy(audioObject, clip.length);
-        }
 
         return audioSource;
     }

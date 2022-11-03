@@ -10,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform _attackPos;
     [SerializeField] LayerMask Enemies;
 
+    [SerializeField] AudioClip[] _swingSFX;
+
     Animator _animator;
 
     private void Awake()
@@ -28,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("AttackDir",0);
                 _attackDelayTime = _maxAttackDelayTime;
+                AudioHelper.PlayClip2D(_swingSFX[Random.Range(0,3)], .25f);
             }
             // Right Mouse Button, Horizontal Attack
             else if (Input.GetMouseButtonDown(1))
@@ -36,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("AttackDir", 1);
                 _attackDelayTime = _maxAttackDelayTime;
+                AudioHelper.PlayClip2D(_swingSFX[Random.Range(0, 3)], .25f);
             }
         }
         else

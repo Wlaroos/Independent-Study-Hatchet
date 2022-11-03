@@ -32,6 +32,9 @@ public abstract class EnemyBase : MonoBehaviour
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
 
+    [SerializeField] AudioClip[] _damagedSFX;
+    [SerializeField] AudioClip[] _deathSFX;
+
     private void Awake()
     {
         _currentHealth = _maxHealth;
@@ -130,6 +133,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void DamageFeedback()
     {
+        if (_damagedSFX != null) { AudioHelper.PlayClip2D(_damagedSFX[Random.Range(0, 3)], .25f); }
+
         // Dazed coroutine, knockback and decrease health
         StartCoroutine(IFrameCoroutine(_startDazedTime));
         _rb.AddForce(new Vector2(_knockbackForce, 0));
@@ -153,6 +158,7 @@ public abstract class EnemyBase : MonoBehaviour
             GameObject horizontalHalves = Instantiate(_horizontal, transform.position, transform.rotation);
         }
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
+        if (_deathSFX != null) { AudioHelper.PlayClip2D(_deathSFX[Random.Range(0, 2)], 1f); }
         Destroy(gameObject);
     }
 

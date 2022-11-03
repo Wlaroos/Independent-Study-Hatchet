@@ -541,6 +541,10 @@ MonoBehaviour:
   Enemies:
     serializedVersion: 2
     m_Bits: 1024
+  _swingSFX:
+  - {fileID: 8300000, guid: ca226489d6f4ecb4bb81fab0788495e8, type: 3}
+  - {fileID: 8300000, guid: a69cf3ddf7a440d4bb1c37de96bd68b6, type: 3}
+  - {fileID: 8300000, guid: 09732eea8785a0f4ba789b5ca808eb9f, type: 3}
 --- !u!114 &240081044
 MonoBehaviour:
   m_ObjectHideFlags: 0

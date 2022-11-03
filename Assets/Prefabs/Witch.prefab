@@ -326,6 +326,13 @@ MonoBehaviour:
     type: 3}
   _candyParticle: {fileID: 4997022307666970876, guid: 7cba7e635148ee24ba1711cada1ac777,
     type: 3}
+  _damagedSFX:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _deathSFX:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &8314329779748965832
 PrefabInstance:
   m_ObjectHideFlags: 0

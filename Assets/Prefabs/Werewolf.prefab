@@ -373,6 +373,13 @@ MonoBehaviour:
     type: 3}
   _candyParticle: {fileID: 4997022307666970876, guid: 7cba7e635148ee24ba1711cada1ac777,
     type: 3}
+  _damagedSFX:
+  - {fileID: 8300000, guid: 563c0d809ef54094d89f39ce3797cc54, type: 3}
+  - {fileID: 8300000, guid: b86778caa8f4e2d44a2530224d6f41ac, type: 3}
+  - {fileID: 8300000, guid: 514cd0263382bc445abbd74bdcbeb24e, type: 3}
+  _deathSFX:
+  - {fileID: 8300000, guid: e919163e6e4d14243aa8dfdbadd9e2a8, type: 3}
+  - {fileID: 8300000, guid: a7695c579e422664b9b53afa84cd2cfb, type: 3}
 --- !u!1001 &1736879065312405987
 PrefabInstance:
   m_ObjectHideFlags: 0
