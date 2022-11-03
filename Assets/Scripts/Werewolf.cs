@@ -5,8 +5,18 @@ using UnityEngine;
 public class Werewolf : EnemyBase
 {
 
-    public override int ArrowDirection()
+    protected override int ArrowDirection()
     {
         return base.ArrowDirection();
+    }
+
+    protected override void Move()
+    {
+        base.Move();
+    }
+
+    protected override void Attack()
+    {
+        base.Attack();
     }
 }

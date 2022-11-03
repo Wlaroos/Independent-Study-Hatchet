@@ -26,7 +26,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] ParticleSystem _candyParticle;
 
     // Component/Object Variables
-    private Animator _anim;
+    protected Animator _anim;
     private GameObject _artHolder;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
@@ -64,6 +64,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Move()
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
+    }
+
+    protected virtual void Attack()
+    {
+        _anim.Play(this.GetType().ToString() + "Attack");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -220,7 +225,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     // Base class is random between vertical and horizontal. Can be overwritten for specific enemies
-    public virtual int ArrowDirection()
+    protected virtual int ArrowDirection()
     {
         return Random.Range(0, 2);
     }
