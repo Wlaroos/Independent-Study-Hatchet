@@ -97,3 +97,31 @@ MonoBehaviour:
       m_Hash: -1562721256
       m_Sprite: {fileID: -3338900141297148675, guid: 83840c1c13085ae4ab7ef84100ab0a46,
         type: 3}
+  - m_Name: WitchH1
+    m_Hash: 1587419032
+    m_CategoryList:
+    - m_Name: Spider-2
+      m_Hash: -1562721256
+      m_Sprite: {fileID: -5572067762194244322, guid: 83840c1c13085ae4ab7ef84100ab0a46,
+        type: 3}
+  - m_Name: WitchH2
+    m_Hash: -946387422
+    m_CategoryList:
+    - m_Name: Spider-2
+      m_Hash: -1562721256
+      m_Sprite: {fileID: 3046805208374212986, guid: 83840c1c13085ae4ab7ef84100ab0a46,
+        type: 3}
+  - m_Name: WitchV1
+    m_Hash: -1965086649
+    m_CategoryList:
+    - m_Name: Spider-2
+      m_Hash: -1562721256
+      m_Sprite: {fileID: 6682522150279061520, guid: 83840c1c13085ae4ab7ef84100ab0a46,
+        type: 3}
+  - m_Name: WitchV2
+    m_Hash: 332823037
+    m_CategoryList:
+    - m_Name: Spider-2
+      m_Hash: -1562721256
+      m_Sprite: {fileID: 6776033828198065317, guid: 83840c1c13085ae4ab7ef84100ab0a46,
+        type: 3}

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.U2D.Animation;
+
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -32,6 +34,9 @@ public abstract class EnemyBase : MonoBehaviour
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
 
+    [SerializeField] SpriteLibraryAsset[] _skins;
+    SpriteLibraryAsset _currentSkin;
+
     [SerializeField] AudioClip[] _damagedSFX;
     [SerializeField] AudioClip[] _deathSFX;
 
@@ -43,6 +48,12 @@ public abstract class EnemyBase : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _arrowHolder = transform.Find("ArrowHolder").gameObject;
         _anim = _artHolder.GetComponent<Animator>();
+
+        if(_skins.Length > 0)
+        {
+            _currentSkin = _skins[Random.Range(0, _skins.Length)];
+            _artHolder.GetComponent<SpriteLibrary>().spriteLibraryAsset = _currentSkin;
+        }
     }
 
     private void Start()
@@ -152,10 +163,12 @@ public abstract class EnemyBase : MonoBehaviour
         if (direction == 0)
         {
             GameObject verticalHalves = Instantiate(_vertical, transform.position, transform.rotation);
+            if (_skins.Length > 0) verticalHalves.transform.GetComponentInChildren<SpriteLibrary>().spriteLibraryAsset = _currentSkin;
         }
         else if (direction == 1)
         {
             GameObject horizontalHalves = Instantiate(_horizontal, transform.position, transform.rotation);
+            if (_skins.Length > 0) horizontalHalves.transform.GetComponentInChildren<SpriteLibrary>().spriteLibraryAsset = _currentSkin;
         }
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
         if (_deathSFX != null) { AudioHelper.PlayClip2D(_deathSFX[Random.Range(0, 2)], 1f); }
