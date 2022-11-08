@@ -27,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Component/Object Variables
     protected Animator _anim;
-    private GameObject _artHolder;
+    protected GameObject _artHolder;
     private Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
@@ -35,7 +35,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] AudioClip[] _damagedSFX;
     [SerializeField] AudioClip[] _deathSFX;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
