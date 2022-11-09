@@ -246,10 +246,13 @@ public class PlayerController : MonoBehaviour
         {
             AudioHelper.PlayClip2D(_damagedSFX, 1f);
         }
+
+        ScreenShake.ShakeOnce(.5f, 2.5f);
     }
 
     public void Kill()
     {
+        ScreenShake.ShakeOnce(.75f, 5f);
         gameObject.SetActive(false);
     }
 

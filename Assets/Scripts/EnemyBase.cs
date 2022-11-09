@@ -130,15 +130,14 @@ public abstract class EnemyBase : MonoBehaviour
 
         // FOR LATER -- For when the player hits an enemy with the wrong attack direction
 
-/*      else if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color != Color.magenta)
+        else if (direction == 0 && _arrowList[0].GetComponent<SpriteRenderer>().color != Color.magenta)
         {
-
+            ScreenShake.ShakeOnce(.2f, 1f);
         }
         else if (direction == 1 && _arrowList[0].GetComponent<SpriteRenderer>().color != Color.cyan)
         {
-
+            ScreenShake.ShakeOnce(.2f, 1f);
         }
-*/
 
     }
 
