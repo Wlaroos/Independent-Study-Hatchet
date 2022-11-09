@@ -11,6 +11,7 @@ public class HUDController : MonoBehaviour
 
     [SerializeField] Slider _healthSlider;
     [SerializeField] Text _candyText;
+    [SerializeField] Image _flashImage;
 
     PlayerController _playerRef;
 
@@ -49,6 +50,25 @@ public class HUDController : MonoBehaviour
     {
         _currentHealth = _playerRef.CurrentHealth;
         _healthSlider.value = _currentHealth;
+        StartCoroutine(ImageFlashCoroutine(.5f));
+    }
+
+    IEnumerator ImageFlashCoroutine(float fadeDuration)
+    {
+        Color initialColor = new Color(1f, .7f, .7f, .8f);
+        Color targetColor = new Color(0, 0, 0, 0);
+        float elapsedTime = 0f;
+
+        _flashImage.color = initialColor;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            _flashImage.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeDuration);
+            yield return null;
+        }
+
+        _flashImage.color = targetColor;
     }
 }
 
