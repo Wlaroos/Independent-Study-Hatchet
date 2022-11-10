@@ -125,7 +125,8 @@ public class PlayerController : MonoBehaviour
         if (colliders != null)
         {
             _isGrounded = true;
-            _runParticles.gameObject.SetActive(true);
+            var emission = _runParticles.emission;
+            emission.enabled = true;
             LandPoof();
             _additionalJumps = _defaultAdditionalJumps;
             _animator.SetBool("Grounded", true);
@@ -139,7 +140,8 @@ public class PlayerController : MonoBehaviour
             }
             // No longer grounded
             _isGrounded = false;
-            _runParticles.gameObject.SetActive(false);
+            var emission = _runParticles.emission;
+            emission.enabled = false;
             hasPoofed = false;
             _animator.SetBool("Grounded", false);
         }
@@ -253,12 +255,21 @@ public class PlayerController : MonoBehaviour
 
     private void LandPoof()
     {
-        foreach (Transform child in _landedParticles.transform)
+        if (!hasPoofed)
         {
-            ParticleSystem ps = child.GetComponent<ParticleSystem>();
-            if (!ps.isPlaying && !hasPoofed)
+            // Connects the particle to the player, sets position, then disconnects it so it doesn't follow the player
+            _landedParticles.transform.SetParent(transform);
+            _landedParticles.transform.localPosition = new Vector3(-.2f, -1f, 0);
+            _landedParticles.transform.SetParent(null);
+
+            // Gameobject has 3 children that are all particle systems. Each one needs to be played.
+            foreach (Transform child in _landedParticles.transform)
             {
-                ps.Play();
+                ParticleSystem ps = child.GetComponent<ParticleSystem>();
+                if (!ps.isPlaying)
+                {
+                    ps.Play();
+                }
             }
         }
         hasPoofed = true;

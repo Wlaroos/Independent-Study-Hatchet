@@ -4,6 +4,7 @@ public class AttackAnimationEvent : MonoBehaviour
 {
 
     [SerializeField] BoxCollider2D _axeTriggerRef;
+    [SerializeField] ParticleSystem _swingParticleRef;
      AxeController _axeControllerRef;
      Animator _animRef;
 
@@ -28,11 +29,14 @@ public class AttackAnimationEvent : MonoBehaviour
             _axeControllerRef._attackDir = _animRef.GetInteger("AttackDir");
             // Enable the Axe's BoxCollider2D
             _axeTriggerRef.enabled = true;
+            _swingParticleRef.Play();
         }
         else
         {
             // Disable the Axe's BoxCollider2D
             _axeTriggerRef.enabled = false;
+            _swingParticleRef.Pause();
+            _swingParticleRef.Clear();
         }
     }
 }
