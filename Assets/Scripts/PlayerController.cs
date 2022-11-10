@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         _facingRight = true;
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         // Stops player interactivity if paused or dead
         if (_isAlive == true && _paused == false)
