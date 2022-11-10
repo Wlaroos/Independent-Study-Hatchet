@@ -1116,61 +1116,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust Trail
       objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536840, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: m_Flip.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536840, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: m_AllowRoll
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536840, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: m_Flip.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536840, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: m_Flip.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536840, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: InitialModule.randomizeRotationDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: InitialModule.startRotation.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6561853788704536842, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2085,75 +2030,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swing Trail
       objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453919799, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_Flip.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_Flip.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920200, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: m_Flip.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920201, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920201, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920201, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920201, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360067042453920201, guid: da0cad911739003419c5725461e04b92,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: 0.088
       objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.542
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
@@ -2168,17 +2053,17 @@ PrefabInstance:
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9769339
+      value: 0.97345924
       objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.21354206
+      value: -0.22886054
       objectReference: {fileID: 0}
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
@@ -2198,7 +2083,7 @@ PrefabInstance:
     - target: {fileID: 1360067042453920202, guid: da0cad911739003419c5725461e04b92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 155.34
+      value: 206.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da0cad911739003419c5725461e04b92, type: 3}
