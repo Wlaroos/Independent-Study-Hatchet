@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: WerewolfM
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: FaceAngry
+    m_Hash: 1921382423
+    m_CategoryList:
+    - m_Name: FaceAngry-2
+      m_Hash: 532780461
+      m_Sprite: {fileID: 1376824235866661857, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Face
+    m_Hash: -1524181927
+    m_CategoryList:
+    - m_Name: Face-2
+      m_Hash: 1138969702
+      m_Sprite: {fileID: -1235592179308420264, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList:
+    - m_Name: Head-2
+      m_Hash: 664938858
+      m_Sprite: {fileID: 5216459872167501731, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: LeftArm
+    m_Hash: -343733542
+    m_CategoryList:
+    - m_Name: LeftArm-2
+      m_Hash: 841365144
+      m_Sprite: {fileID: 9032521404712648425, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Chest
+    m_Hash: 981834931
+    m_CategoryList:
+    - m_Name: Chest-2
+      m_Hash: -1619721983
+      m_Sprite: {fileID: -4982883267805905831, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Waist
+    m_Hash: -604562657
+    m_CategoryList:
+    - m_Name: Waist-2
+      m_Hash: -300219115
+      m_Sprite: {fileID: -3978672192886393048, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: LeftLeg
+    m_Hash: 101577729
+    m_CategoryList:
+    - m_Name: LeftLeg-2
+      m_Hash: 183441625
+      m_Sprite: {fileID: 3512230915991030062, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Tail
+    m_Hash: -603645085
+    m_CategoryList:
+    - m_Name: Tail-2
+      m_Hash: 1838232605
+      m_Sprite: {fileID: 4772856880599215396, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: RightLeg
+    m_Hash: -2042820100
+    m_CategoryList:
+    - m_Name: RightLeg-2
+      m_Hash: 1760659896
+      m_Sprite: {fileID: -3049328317673775388, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: RightArm
+    m_Hash: 1806956327
+    m_CategoryList:
+    - m_Name: RightArm-2
+      m_Hash: 1345890297
+      m_Sprite: {fileID: 3090042161516650192, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Werewolf H1
+    m_Hash: -2008870499
+    m_CategoryList:
+    - m_Name: Werewolf H1-2
+      m_Hash: 125519222
+      m_Sprite: {fileID: -2490579547200539101, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Werewolf H2
+    m_Hash: 290078759
+    m_CategoryList:
+    - m_Name: Werewolf H2-2
+      m_Hash: 87948079
+      m_Sprite: {fileID: -5408567700778428408, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Werewolf V1
+    m_Hash: 1543646786
+    m_CategoryList:
+    - m_Name: Werewolf V1-2
+      m_Hash: -1212324390
+      m_Sprite: {fileID: -7801129098910929733, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
+  - m_Name: Werewolf V2
+    m_Hash: -989102088
+    m_CategoryList:
+    - m_Name: Werewolf V2-2
+      m_Hash: -1241785469
+      m_Sprite: {fileID: 8057429304162815845, guid: 3332d9b4e2ed5224888d9ae1b4b10fe8,
+        type: 3}
