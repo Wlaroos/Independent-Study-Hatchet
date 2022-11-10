@@ -273,10 +273,7 @@ public class PlayerController : MonoBehaviour
             foreach (Transform child in _landedParticles.transform)
             {
                 ParticleSystem ps = child.GetComponent<ParticleSystem>();
-                if (!ps.isPlaying)
-                {
-                    ps.Play();
-                }
+                ps.Play();
             }
         }
         hasPoofed = true;
