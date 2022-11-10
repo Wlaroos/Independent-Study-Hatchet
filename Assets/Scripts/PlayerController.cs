@@ -51,9 +51,11 @@ public class PlayerController : MonoBehaviour
     GameObject _artHolder;
     Rigidbody2D _rb;
     Animator _animator;
+    AudioManager _am;
 
     private void Awake()
     {
+        _am = FindObjectOfType<AudioManager>();
         _currentHealth = _maxHealth;
         _runParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
         _artHolder = transform.GetChild(0).gameObject;
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour
         // and they haven't run out of time to call another jump (_rememberGroundedFor)
         if ((Input.GetKeyDown(KeyCode.Space)) && (_isGrounded || Time.time - _lastTimeGrounded <= _rememberGroundedFor && _additionalJumps > 0))
         {
+            _am.Play("Jump");
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
             _additionalJumps--;
             _animator.SetTrigger("Jump");
@@ -239,16 +242,19 @@ public class PlayerController : MonoBehaviour
             ParticleSystem DamagedParticles = Instantiate(_damagedParticles, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
         }
         //audio
-        if (_damagedSFX != null)
-        {
-            AudioHelper.PlayClip2D(_damagedSFX, 1f);
-        }
+        /*        if (_damagedSFX != null)
+                {
+                    AudioHelper.PlayClip2D(_damagedSFX, 1f);
+                }*/
+
+        _am.Play("PlayerDamage");
 
         ScreenShake.ShakeOnce(.5f, 2.5f);
     }
 
     private void Kill()
     {
+        _am.Play("PlayerDeath");
         ScreenShake.ShakeOnce(.75f, 5f);
         gameObject.SetActive(false);
     }
@@ -261,6 +267,7 @@ public class PlayerController : MonoBehaviour
             _landedParticles.transform.SetParent(transform);
             _landedParticles.transform.localPosition = new Vector3(-.2f, -1f, 0);
             _landedParticles.transform.SetParent(null);
+            _am.Play("Landing");
 
             // Gameobject has 3 children that are all particle systems. Each one needs to be played.
             foreach (Transform child in _landedParticles.transform)

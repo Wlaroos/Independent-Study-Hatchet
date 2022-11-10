@@ -10,6 +10,8 @@ public class CandyPickup : MonoBehaviour
 
     HUDController _HUDref;
 
+    AudioManager _am;
+
     PlayerController _playerRef;
 
     int _candyValue = 1;
@@ -20,6 +22,7 @@ public class CandyPickup : MonoBehaviour
 
     private void Awake()
     {
+        _am = FindObjectOfType<AudioManager>();
         ps = transform.GetComponent<ParticleSystem>();
         _HUDref = FindObjectOfType<HUDController>();
         _playerRef = FindObjectOfType<PlayerController>();
@@ -44,6 +47,8 @@ public class CandyPickup : MonoBehaviour
             _HUDref.AddCandy(_candyValue);
             // Applies local referece changes to the particle in the list
             _particles[i] = p;
+
+            _am.Play("Coin");
         }
 
         // Apply changes to the particle system using the new values from the list

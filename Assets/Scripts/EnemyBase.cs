@@ -37,11 +37,13 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] SpriteLibraryAsset[] _skins;
     SpriteLibraryAsset _currentSkin;
 
+    protected AudioManager _am;
     [SerializeField] AudioClip[] _damagedSFX;
     [SerializeField] AudioClip[] _deathSFX;
 
     protected virtual void Awake()
     {
+        _am = FindObjectOfType<AudioManager>();
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
         _artHolder = transform.GetChild(0).gameObject;
@@ -141,9 +143,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     }
 
-    private void DamageFeedback()
+    protected virtual void DamageFeedback()
     {
-        if (_damagedSFX != null) { AudioHelper.PlayClip2D(_damagedSFX[Random.Range(0, 3)], .25f); }
+        //if (_damagedSFX != null) { AudioHelper.PlayClip2D(_damagedSFX[Random.Range(0, 3)], .25f); }
 
         // Dazed coroutine, knockback and decrease health
         StartCoroutine(IFrameCoroutine(_startDazedTime));
@@ -170,7 +172,8 @@ public abstract class EnemyBase : MonoBehaviour
             if (_skins.Length > 0) horizontalHalves.transform.GetComponentInChildren<SpriteLibrary>().spriteLibraryAsset = _currentSkin;
         }
         ParticleSystem candy = Instantiate(_candyParticle, transform.position + new Vector3(0, 0, -.05f), _candyParticle.transform.rotation);
-        if (_deathSFX != null) { AudioHelper.PlayClip2D(_deathSFX[Random.Range(0, 2)], 1f); }
+        _am.Play("EnemyDeath");
+        //if (_deathSFX != null) { AudioHelper.PlayClip2D(_deathSFX[Random.Range(0, 2)], 1f); }
         Destroy(gameObject);
     }
 

@@ -14,4 +14,10 @@
     {
         base.Attack();
     }
+
+    protected override void DamageFeedback()
+    {
+        base.DamageFeedback();
+        _am.Play("WitchDamage");
+    }
 }
