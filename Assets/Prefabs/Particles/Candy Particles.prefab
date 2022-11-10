@@ -2349,7 +2349,7 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -4826,5 +4826,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825d26dcbbf6636499c43e895a48ed01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HUDref: {fileID: 0}
-  _candyValue: 1

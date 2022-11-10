@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             //s.source.clip = s.clip;
-            Debug.Log(s.clip.Length);
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -35,10 +34,4 @@ public class AudioManager : MonoBehaviour
         s.source.clip = s.clip[UnityEngine.Random.Range(0, s.clip.Length)];
         s.source.Play();
     }
-
-    private void Random()
-    {
-
-    }
-
 }
