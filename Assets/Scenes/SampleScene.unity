@@ -2803,7 +2803,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 85ff32efeedb24542bbed4c0905d70b7, type: 3}
     - {fileID: 8300000, guid: a72412d47855c0f4da24aeed8fbc8743, type: 3}
     volume: 0.25
-    pitch: 1
+    pitch: 1.05
     loop: 0
     source: {fileID: 0}
   - name: Jump
@@ -2873,7 +2873,7 @@ MonoBehaviour:
   - name: EnemyDeath
     clip:
     - {fileID: 8300000, guid: 0bb1d0345fd35494e88dd3b1d55f3631, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
