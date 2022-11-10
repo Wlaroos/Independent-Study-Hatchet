@@ -10,9 +10,11 @@ public class CandyPickup : MonoBehaviour
     //
     // ALLOWS INTERACTION WITH CANDY PARTICLES AND PLAYER
 
-    [SerializeField] HUDController _HUDref;
+    HUDController _HUDref;
 
-    [SerializeField] int _candyValue = 1;
+    PlayerController _playerRef;
+
+    int _candyValue = 1;
 
     ParticleSystem ps;
 
@@ -22,7 +24,8 @@ public class CandyPickup : MonoBehaviour
     {
         ps = transform.GetComponent<ParticleSystem>();
         _HUDref = FindObjectOfType<HUDController>();
-        GetComponent<ParticleSystem>().trigger.SetCollider(0, _HUDref.gameObject.transform);
+        _playerRef = FindObjectOfType<PlayerController>();
+        ps.trigger.SetCollider(0, _playerRef.gameObject.transform);
     }
 
 

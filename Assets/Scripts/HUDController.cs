@@ -13,14 +13,14 @@ public class HUDController : MonoBehaviour
     [SerializeField] Text _candyText;
     [SerializeField] Image _flashImage;
 
-    PlayerController _playerRef;
+    [SerializeField] PlayerController _playerRef;
 
     private int _candyAmount;
 
     // Set variables
     private void Awake()
     {
-        _playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
+        //_playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
         _maxHealth = _playerRef.MaxHealth;
         _currentHealth = _playerRef.CurrentHealth;
         _healthSlider.maxValue = _maxHealth;
@@ -55,11 +55,10 @@ public class HUDController : MonoBehaviour
 
     IEnumerator ImageFlashCoroutine(float fadeDuration)
     {
-        Color initialColor = new Color(1f, .7f, .7f, .8f);
+        _flashImage.enabled = true;
+        Color initialColor = _flashImage.color;
         Color targetColor = new Color(0, 0, 0, 0);
         float elapsedTime = 0f;
-
-        _flashImage.color = initialColor;
 
         while (elapsedTime < fadeDuration)
         {
@@ -68,7 +67,8 @@ public class HUDController : MonoBehaviour
             yield return null;
         }
 
-        _flashImage.color = targetColor;
+        _flashImage.color = initialColor;
+        _flashImage.enabled = false;
     }
 }
 
