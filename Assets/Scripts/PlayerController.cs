@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System;
 
 public class PlayerController : MonoBehaviour
@@ -43,8 +40,13 @@ public class PlayerController : MonoBehaviour
     // References
     [SerializeField] Transform _groundChecker;
     [SerializeField] LayerMask _groundLayer;
+
+    ParticleSystem _runParticles;
+    [SerializeField] GameObject _landedParticles;
+
     [SerializeField] ParticleSystem _damagedParticles;
     [SerializeField] AudioClip _damagedSFX;
+
     GameObject _artHolder;
     Rigidbody2D _rb;
     Animator _animator;
@@ -52,26 +54,15 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
+        _runParticles = transform.GetChild(2).GetComponent<ParticleSystem>();
         _artHolder = transform.GetChild(0).gameObject;
         _rb = GetComponent<Rigidbody2D>();
         _animator = _artHolder.GetComponent<Animator>();
         _facingRight = true;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
-        // Restart Game
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        // Exit Game
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
         // Stops player interactivity if paused or dead
         if (_isAlive == true && _paused == false)
         {
@@ -128,7 +119,6 @@ public class PlayerController : MonoBehaviour
 
     void CheckIfGrounded()
     {
-
         // Checks for collision between the ground layer and a circle collider that is created
         Collider2D colliders = Physics2D.OverlapCircle(_groundChecker.position, _checkGroundRadius, _groundLayer);
         //Set grounded and resets player jumps
@@ -175,6 +165,7 @@ public class PlayerController : MonoBehaviour
         Vector3 xScale = transform.localScale;
         xScale.x *= -1;
         transform.localScale = xScale;
+        _runParticles.transform.localScale = xScale;
     }
 
     public void DecreaseHealth(int amount, float knockDirection)
@@ -239,7 +230,7 @@ public class PlayerController : MonoBehaviour
         //particles
         if (_damagedParticles != null)
         {
-            _damagedParticles = Instantiate(_damagedParticles, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            ParticleSystem DamagedParticles = Instantiate(_damagedParticles, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
         }
         //audio
         if (_damagedSFX != null)

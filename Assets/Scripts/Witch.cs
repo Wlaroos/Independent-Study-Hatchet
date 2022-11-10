@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
-
-public class Witch : EnemyBase
+﻿public class Witch : EnemyBase
 {
     protected override int ArrowDirection()
     {

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Werewolf : EnemyBase
+﻿public class Werewolf : EnemyBase
 {
 
     protected override int ArrowDirection()
