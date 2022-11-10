@@ -434,8 +434,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  _landedParticles: {fileID: 7532849057174396943, guid: 4c737cdaa499ff944bb91e4a22687932,
-    type: 3}
+  _landedParticles: {fileID: 595329320}
   _damagedParticles: {fileID: 0}
   _damagedSFX: {fileID: 0}
 --- !u!212 &240081040
@@ -502,6 +501,7 @@ Transform:
   - {fileID: 2040419035}
   - {fileID: 83806037}
   - {fileID: 1517826270}
+  - {fileID: 595329321}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -751,6 +751,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &579970400
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 240081041}
+    m_Modifications:
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.196
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532849057174396943, guid: 4c737cdaa499ff944bb91e4a22687932,
+        type: 3}
+      propertyPath: m_Name
+      value: LandedPoof
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4c737cdaa499ff944bb91e4a22687932, type: 3}
+--- !u!1 &595329320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7532849057174396943, guid: 4c737cdaa499ff944bb91e4a22687932,
+    type: 3}
+  m_PrefabInstance: {fileID: 579970400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &595329321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3524214083781277669, guid: 4c737cdaa499ff944bb91e4a22687932,
+    type: 3}
+  m_PrefabInstance: {fileID: 579970400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &603406986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561853788704536841, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6561853788704536842, guid: 8c0b2d2c9630f8d41b2f718f52ba5954,
         type: 3}

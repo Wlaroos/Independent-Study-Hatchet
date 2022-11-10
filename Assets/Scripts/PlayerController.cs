@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     ParticleSystem _runParticles;
     [SerializeField] GameObject _landedParticles;
+    bool hasPoofed = false;
 
     [SerializeField] ParticleSystem _damagedParticles;
     [SerializeField] AudioClip _damagedSFX;
@@ -114,7 +115,6 @@ public class PlayerController : MonoBehaviour
             _additionalJumps--;
             _animator.SetTrigger("Jump");
         }
-
     }
 
     void CheckIfGrounded()
@@ -125,6 +125,8 @@ public class PlayerController : MonoBehaviour
         if (colliders != null)
         {
             _isGrounded = true;
+            _runParticles.gameObject.SetActive(true);
+            LandPoof();
             _additionalJumps = _defaultAdditionalJumps;
             _animator.SetBool("Grounded", true);
         }
@@ -137,6 +139,8 @@ public class PlayerController : MonoBehaviour
             }
             // No longer grounded
             _isGrounded = false;
+            _runParticles.gameObject.SetActive(false);
+            hasPoofed = false;
             _animator.SetBool("Grounded", false);
         }
     }
@@ -241,10 +245,23 @@ public class PlayerController : MonoBehaviour
         ScreenShake.ShakeOnce(.5f, 2.5f);
     }
 
-    public void Kill()
+    private void Kill()
     {
         ScreenShake.ShakeOnce(.75f, 5f);
         gameObject.SetActive(false);
+    }
+
+    private void LandPoof()
+    {
+        foreach (Transform child in _landedParticles.transform)
+        {
+            ParticleSystem ps = child.GetComponent<ParticleSystem>();
+            if (!ps.isPlaying && !hasPoofed)
+            {
+                ps.Play();
+            }
+        }
+        hasPoofed = true;
     }
 
 }
