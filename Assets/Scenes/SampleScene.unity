@@ -281,7 +281,7 @@ Transform:
   m_LocalScale: {x: 50, y: 24, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83806036
 GameObject:
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 240081041}
   _smoothTime: 0.12
-  posY: 5
+  posY: 3
   minX: -10
   maxX: 10
   minY: -4
@@ -1261,7 +1261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -2.22, y: -4.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1759,7 +1759,7 @@ PrefabInstance:
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
@@ -2231,7 +2231,7 @@ PrefabInstance:
     - target: {fileID: 8067400588804009318, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8067400588804009318, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}
@@ -2535,7 +2535,7 @@ PrefabInstance:
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
@@ -4006,7 +4006,7 @@ PrefabInstance:
     - target: {fileID: 8067400588804009318, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8067400588804009318, guid: 8f7d08c7cc078f04ca23da570f67beac,
         type: 3}

@@ -118,6 +118,11 @@ public class PlayerController : MonoBehaviour
             _additionalJumps--;
             _animator.SetTrigger("Jump");
         }
+        // Allows for small jumps if button is not held down
+        if ((Input.GetKeyUp(KeyCode.Space)) && _rb.velocity.y > 0)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+        }
     }
 
     void CheckIfGrounded()
