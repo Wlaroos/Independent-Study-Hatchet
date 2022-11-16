@@ -186,7 +186,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -209,6 +209,7 @@ MonoBehaviour:
   _maxHealth: 1
   _contactDamage: 1
   _startDazedTime: 0.5
+  _playerRef: {fileID: 0}
   _horizontal: {fileID: 2906169883122391982, guid: 79b444435e756ac4f83889d735e4af11,
     type: 3}
   _vertical: {fileID: 1982423272332009338, guid: 6af1dc353d908654eada948bc0ed63ec,

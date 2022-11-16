@@ -11,6 +11,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Movement/Health Variables
     [SerializeField] protected float _maxSpeed = 5f;
     private float _speed;
+    private Vector3 _direction;
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
@@ -23,6 +24,7 @@ public abstract class EnemyBase : MonoBehaviour
     private Color flashColor = new Color32(255, 75, 75, 255);
 
     // Prefab variables
+    [SerializeField] GameObject _playerRef;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
@@ -68,6 +70,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void Update()
     {
+        _direction = new Vector3(_playerRef.transform.position.x - transform.position.x, 0, 0);
+    }
+
+    private void FixedUpdate()
+    {
         // No movement if enemy is "dazed"
         if (_dazed == false)
         {
@@ -79,7 +86,13 @@ public abstract class EnemyBase : MonoBehaviour
     // Shitty translate movement, will be changed
     protected virtual void Move()
     {
-        transform.Translate(Vector2.left * _speed * Time.deltaTime);
+        if (_playerRef.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else { transform.localScale = Vector3.one; }
+        _rb.MovePosition(transform.position + _direction.normalized * _speed * Time.fixedDeltaTime);
+        //transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
     protected virtual void Attack()
