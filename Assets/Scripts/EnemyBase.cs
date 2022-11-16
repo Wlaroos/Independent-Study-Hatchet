@@ -10,8 +10,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Movement/Health Variables
     [SerializeField] protected float _maxSpeed = 5f;
-    private float _speed;
-    private Vector3 _direction;
+    protected float _speed;
+    protected Vector3 _direction;
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
@@ -24,7 +24,7 @@ public abstract class EnemyBase : MonoBehaviour
     private Color flashColor = new Color32(255, 75, 75, 255);
 
     // Prefab variables
-    [SerializeField] GameObject _playerRef;
+    [SerializeField] protected GameObject _playerRef;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
@@ -32,7 +32,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Component/Object Variables
     protected Animator _anim;
     protected GameObject _artHolder;
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
     private GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
 
@@ -68,7 +68,7 @@ public abstract class EnemyBase : MonoBehaviour
         _anim.Play(0,0,Random.value);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         _direction = new Vector3(_playerRef.transform.position.x - transform.position.x, 0, 0);
     }
@@ -86,13 +86,20 @@ public abstract class EnemyBase : MonoBehaviour
     // Shitty translate movement, will be changed
     protected virtual void Move()
     {
-        if (_playerRef.transform.position.x > transform.position.x && _playerRef != null)
+        Vector3 scale = transform.localScale;
+
+        if (_playerRef.transform.position.x > transform.position.x && _playerRef)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            scale.x = -1;
         }
-        else { transform.localScale = Vector3.one; }
+        else
+        {
+            scale.x = 1;
+        }
+
+        transform.localScale = scale;
+
         _rb.MovePosition(transform.position + _direction.normalized * _speed * Time.fixedDeltaTime);
-        //transform.Translate(Vector2.left * _speed * Time.deltaTime);
     }
 
     protected virtual void Attack()
