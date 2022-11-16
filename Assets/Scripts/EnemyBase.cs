@@ -85,6 +85,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Attack()
     {
         _anim.Play(this.GetType().ToString() + "Attack");
+        _anim.SetBool("isAttacking", true);
+        Invoke("ResetBool", _anim.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    private void ResetBool()
+    {
+        _anim.SetBool("isAttacking", false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -93,7 +100,7 @@ public abstract class EnemyBase : MonoBehaviour
         PlayerController playerRef = collision.gameObject.transform.GetComponent<PlayerController>();
 
         // If they touch the player, decrease health and give direction for knockback (Direction enemy is facing)
-        if (playerRef != null)
+        if (playerRef != null && _anim.GetBool("isAttacking") == true)
         {
             int dir;
             if (transform.forward.x == 1) dir = 1; else dir = -1;
