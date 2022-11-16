@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 1
-  _knockbackForce: 150
+  _knockbackForce: 300
   _maxHealth: 3
   _contactDamage: 1
   _startDazedTime: 0.5

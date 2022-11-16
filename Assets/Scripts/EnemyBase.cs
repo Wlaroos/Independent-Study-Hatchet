@@ -86,7 +86,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Shitty translate movement, will be changed
     protected virtual void Move()
     {
-        if (_playerRef.transform.position.x > transform.position.x)
+        if (_playerRef.transform.position.x > transform.position.x && _playerRef != null)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }

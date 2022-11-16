@@ -316,10 +316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 2
-  _knockbackForce: 150
+  _knockbackForce: 300
   _maxHealth: 1
   _contactDamage: 1
   _startDazedTime: 0.5
+  _playerRef: {fileID: 0}
   _horizontal: {fileID: 2906169883122391982, guid: efa348722e6f483439abf0eca2a693c8,
     type: 3}
   _vertical: {fileID: 1982423272332009338, guid: 97cf830903a20d349b3b14df6b432299,
