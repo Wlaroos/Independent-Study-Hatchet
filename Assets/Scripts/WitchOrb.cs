@@ -28,12 +28,11 @@ public class WitchOrb : MonoBehaviour
     private void Start()
     {
         AddArrows();
+        _direction = _playerRef.transform.position - transform.position;
     }
 
     private void FixedUpdate()
     {
-        _direction = _playerRef.transform.position - transform.position;
-
         if (_direction.x - _direction.x > 0)
         {
             _speed = -_speed;
@@ -55,6 +54,12 @@ public class WitchOrb : MonoBehaviour
     {
 
         PlayerController playerRef = collision.gameObject.transform.GetComponent<PlayerController>();
+
+        if (collision.gameObject.layer == 8)
+        {
+            if (_impactParticles != null) Instantiate(_impactParticles, transform);
+            Destroy(this.gameObject);
+        }
 
         if (playerRef != null)
         {
