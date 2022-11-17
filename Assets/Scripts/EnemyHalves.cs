@@ -23,6 +23,14 @@ public class EnemyHalves : MonoBehaviour
 
     private void Delt()
     {
-        Destroy(this.gameObject);
+        if(transform.parent.parent != null)
+        {
+            Destroy(transform.parent.parent.gameObject);
+        }
+        else
+        {
+            Destroy(transform.parent.gameObject);
+        }
+
     }
 }

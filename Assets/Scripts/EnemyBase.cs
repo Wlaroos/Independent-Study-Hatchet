@@ -272,6 +272,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     }
 
+    public void SetPlayerRef(PlayerController player)
+    {
+        _playerRef = player.gameObject;
+    }
+
     // Base class is random between vertical and horizontal. Can be overwritten for specific enemies
     protected virtual int ArrowDirection()
     {

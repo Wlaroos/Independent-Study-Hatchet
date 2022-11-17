@@ -36,6 +36,11 @@ public class CandyPickup : MonoBehaviour
         // Gets how many particles that were touched
         int triggeredParticles = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, _particles);
 
+        if(ps.particleCount <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         // For each particle that the player touched
         for (int i = 0; i < triggeredParticles; i++)
         {
