@@ -991,9 +991,11 @@ MonoBehaviour:
   - 3
   - 2
   _spawnPoints:
-  - {x: 7, y: -6.5, z: 0}
+  - {x: 13.796335, y: -7, z: 0}
   - {x: 20, y: -10, z: 0}
   - {x: -10, y: -10, z: 0}
+  - {x: -8.606827, y: -6, z: 0}
+  - {x: -7.1913753, y: -0.9257412, z: 0}
 --- !u!4 &679512181
 Transform:
   m_ObjectHideFlags: 0
@@ -3126,7 +3128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.75}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1587774529
 MonoBehaviour:

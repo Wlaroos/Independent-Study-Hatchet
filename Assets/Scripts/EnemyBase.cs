@@ -65,8 +65,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         // Create arrows as soon as game starts
         AddArrows();
-        // Start idle animation at random location so enemies don't move in sync
-        _anim.Play(0,0,Random.value);
+        Move();
+        StartCoroutine(SpawnDelay());
     }
 
     protected virtual void Update()
@@ -240,6 +240,22 @@ public abstract class EnemyBase : MonoBehaviour
         }                  
         _dazed = false;
         _speed = _maxSpeed;
+    }
+
+    private IEnumerator SpawnDelay()
+    {
+        // Stops movement and damage from occuring
+        _speed = 0;
+        _dazed = true;
+        if(!gameObject.name.Contains("Witch")) _rb.velocity = new Vector2(0, -1);
+
+        // Waits until enemy hits ground
+        yield return new WaitUntil(() => _rb.velocity.y == 0);
+
+        _dazed = false;
+        _speed = _maxSpeed;
+        // Start idle animation at random location so enemies don't move in sync
+        _anim.Play(0, 0, Random.value);
     }
 
     private void AddArrows()
