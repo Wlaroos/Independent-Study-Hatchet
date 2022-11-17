@@ -31,11 +31,11 @@ public class Witch : EnemyBase
 
         if ((_playerRef.transform.position.x + 3.5 - transform.position.x) <= 0.05f && scale.x == 1)
         {
-            _rb.MovePosition(transform.position + _direction.normalized * _speed * Time.fixedDeltaTime);
+            _rb.velocity = (_direction.normalized * _speed);
         }
         else if ((_playerRef.transform.position.x - 3.5 - transform.position.x) >= 0.05f && scale.x == -1)
         {
-            _rb.MovePosition(transform.position + _direction.normalized * _speed * Time.fixedDeltaTime);
+            _rb.velocity = (_direction.normalized * _speed);
         }
     }
 

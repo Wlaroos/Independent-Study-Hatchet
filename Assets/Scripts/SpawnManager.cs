@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
         {
             newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -6.5f, 0);
         }
-        else { newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -9.5f, 0); }
+        else { newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -10f, 0); }
         StartCoroutine(SpawnEnemy(_spawnInterval, _enemies[GetRandomWeightedIndex(_spawnWeights)]));
     }
 

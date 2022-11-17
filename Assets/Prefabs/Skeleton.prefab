@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a272a2e3c336d2b4db721e8b88aad293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1
+  _maxSpeed: 4
   _knockbackForce: 150
   _maxHealth: 1
   _contactDamage: 1
