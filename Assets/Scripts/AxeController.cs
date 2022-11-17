@@ -14,6 +14,10 @@ public class AxeController : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyBase>().TakeDamage(_attackDir);
         }
+        if (collision.gameObject.GetComponent<WitchOrb>() != null)
+        {
+            collision.gameObject.GetComponent<WitchOrb>().TakeDamage(_attackDir);
+        }
     }
 
 }

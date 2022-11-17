@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 public class Witch : EnemyBase
 {
+
     protected override int ArrowDirection()
     {
         return base.ArrowDirection();
