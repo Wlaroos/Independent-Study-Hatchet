@@ -1486,9 +1486,9 @@ MonoBehaviour:
   - 3
   - 2
   _spawnPoints:
-  - {x: -10.248552, y: -9.993907, z: 0}
-  - {x: 21.450459, y: -10.21536, z: 0}
-  - {x: 17.136406, y: -5.6236076, z: 0}
+  - {x: 6.2592793, y: -4.2503967, z: 0}
+  - {x: 8.936455, y: -4.1295233, z: 0}
+  - {x: 4.508294, y: -4.178222, z: 0}
 --- !u!4 &679512181
 Transform:
   m_ObjectHideFlags: 0
@@ -4420,7 +4420,7 @@ PrefabInstance:
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.64
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 3580433589708626915, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
         type: 3}
@@ -4466,16 +4466,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
-        type: 3}
-      propertyPath: _playerRef
-      value: 
-      objectReference: {fileID: 240081036}
-    - target: {fileID: 5070992949709817956, guid: 3a79e3c3774bc524cbb595fc0164eb1a,
-        type: 3}
-      propertyPath: _maxSpeed
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a79e3c3774bc524cbb595fc0164eb1a, type: 3}

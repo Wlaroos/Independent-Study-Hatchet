@@ -19,10 +19,12 @@ public class Witch : EnemyBase
         if (_playerRef.transform.position.x > transform.position.x)
         {
             scale.x = -1;
+            _arrowHolder.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else 
-        { 
+        else
+        {
             scale.x = 1;
+            _arrowHolder.transform.localScale = new Vector3(1, 1, 1);
         }
 
         transform.localScale = scale;

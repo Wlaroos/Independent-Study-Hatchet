@@ -33,7 +33,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator _anim;
     protected GameObject _artHolder;
     protected Rigidbody2D _rb;
-    private GameObject _arrowHolder;
+    protected GameObject _arrowHolder;
     private List<GameObject> _arrowList = new List<GameObject>();
 
     [SerializeField] SpriteLibraryAsset[] _skins;
@@ -91,15 +91,17 @@ public abstract class EnemyBase : MonoBehaviour
         if (_playerRef.transform.position.x > transform.position.x && _playerRef)
         {
             scale.x = -1;
+            _arrowHolder.transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
             scale.x = 1;
+            _arrowHolder.transform.localScale = new Vector3(1, 1, 1);
         }
 
         transform.localScale = scale;
 
-        _rb.MovePosition(transform.position + _direction.normalized * _speed * Time.fixedDeltaTime);
+        _rb.velocity = (_direction.normalized * _speed);
     }
 
     protected virtual void Attack()
@@ -176,13 +178,13 @@ public abstract class EnemyBase : MonoBehaviour
 
         // Dazed coroutine, knockback and decrease health
         StartCoroutine(IFrameCoroutine(_startDazedTime));
-        _rb.AddForce(new Vector2(_knockbackForce, 0));
+        _rb.AddForce(new Vector2(_knockbackForce * transform.localScale.x, 0));
         _currentHealth -= 1;
 
         // Remove arrow from list and destroy the arrow object
         _arrowList.RemoveAt(0);
         Destroy(_arrowHolder.transform.GetChild(0).gameObject);
-        // PUT METHOD TO REORGANIZE ARROW POSITION HERE 
+        // PUT METHOD TO REORGANIZE ARROW POSITION HERE
     }
 
     // Create enemy halves and candy particles, then destroy

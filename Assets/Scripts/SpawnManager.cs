@@ -20,6 +20,11 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(interval);
         GameObject newEnemy = Instantiate(enemy, _spawnPoints[Random.Range(0, _spawnPoints.Length)], Quaternion.identity);
         newEnemy.GetComponent<EnemyBase>().SetPlayerRef(_playerRef);
+        if (newEnemy.name.Contains("Witch"))
+        {
+            newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -6.5f, 0);
+        }
+        else { newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -9.5f, 0); }
         StartCoroutine(SpawnEnemy(_spawnInterval, _enemies[GetRandomWeightedIndex(_spawnWeights)]));
     }
 
