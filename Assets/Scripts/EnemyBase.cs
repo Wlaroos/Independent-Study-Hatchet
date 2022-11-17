@@ -46,6 +46,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         _am = FindObjectOfType<AudioManager>();
+        if(_maxHealth > 1) _maxHealth = Random.Range(_maxHealth - 1, _maxHealth + 1);
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
         _artHolder = transform.GetChild(0).gameObject;
