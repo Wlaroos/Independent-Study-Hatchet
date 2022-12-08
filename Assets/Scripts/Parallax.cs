@@ -7,13 +7,14 @@ public class Parallax : MonoBehaviour
 
     float _length;
     float _startPos;
+    Camera _camRef;
 
-    [SerializeField] Camera _camRef;
     [SerializeField] float _parallaxAmount;
 
 
     private void Awake()
     {
+        _camRef = Camera.main;
         _startPos = transform.position.x;
         _length = GetComponent<SpriteRenderer>().bounds.size.x;
     }

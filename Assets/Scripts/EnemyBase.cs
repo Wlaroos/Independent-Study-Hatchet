@@ -12,6 +12,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float _maxSpeed = 5f;
     protected float _speed;
     protected Vector3 _direction;
+    protected bool _directionBool;
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
@@ -89,20 +90,36 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        if (_playerRef.transform.position.x > transform.position.x && _playerRef)
+        if (_playerRef.transform.position.x > transform.position.x && _playerRef && _directionBool == false)
         {
             scale.x = -1;
             _arrowHolder.transform.localScale = new Vector3(-1, 1, 1);
+            _directionBool = true;
         }
-        else
+        else if(_playerRef.transform.position.x <= transform.position.x && _playerRef && _directionBool == true)
         {
             scale.x = 1;
             _arrowHolder.transform.localScale = new Vector3(1, 1, 1);
+            _directionBool = false;
         }
 
         transform.localScale = scale;
 
-        _rb.velocity = (_direction.normalized * _speed);
+        // Checks for collision between the ground layer and a circle collider that is created
+        LayerMask mask = LayerMask.GetMask("Ground");
+        LayerMask mask2 = LayerMask.GetMask("Ground(Objects)");
+        Collider2D colliders = Physics2D.OverlapCircle(transform.position + new Vector3(0,-.88f,0), 1f, mask);
+        Collider2D colliders2 = Physics2D.OverlapCircle(transform.position + new Vector3(0, -.88f, 0), 1f, mask2);
+        //Set grounded and resets player jumps
+        if (colliders != null || colliders2 != null)
+        {
+            _rb.velocity = new Vector2(_direction.normalized.x * _speed, -1f * _speed);
+            
+        }
+        else
+        {
+            _rb.velocity = new Vector2(0, -10);
+        }
     }
 
     protected virtual void Attack()

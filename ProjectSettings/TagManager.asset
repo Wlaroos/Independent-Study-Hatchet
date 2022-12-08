@@ -18,7 +18,7 @@ TagManager:
   - Enemies
   - Corpses
   - Axe
-  - 
+  - Ground(Objects)
   - 
   - 
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
+    uniqueID: 1569682559
+    locked: 0
+  - name: Background (Objects)
     uniqueID: 3352683209
     locked: 0
   - name: Enemies

@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // References
     [SerializeField] Transform _groundChecker;
     [SerializeField] LayerMask _groundLayer;
+    [SerializeField] LayerMask _groundLayer2;
 
     ParticleSystem _runParticles;
     [SerializeField] GameObject _landedParticles;
@@ -129,8 +130,9 @@ public class PlayerController : MonoBehaviour
     {
         // Checks for collision between the ground layer and a circle collider that is created
         Collider2D colliders = Physics2D.OverlapCircle(_groundChecker.position, _checkGroundRadius, _groundLayer);
+        Collider2D colliders2 = Physics2D.OverlapCircle(_groundChecker.position, _checkGroundRadius, _groundLayer2);
         //Set grounded and resets player jumps
-        if (colliders != null)
+        if (colliders != null || colliders2 != null)
         {
             _isGrounded = true;
             var emission = _runParticles.emission;
