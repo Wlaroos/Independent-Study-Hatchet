@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 1360476591203884513}
   m_Layer: 10
   m_Name: Witch
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +364,6 @@ MonoBehaviour:
   _maxHealth: 1
   _contactDamage: 1
   _startDazedTime: 0.5
-  _playerRef: {fileID: 0}
   _horizontal: {fileID: 2906169883122391982, guid: efa348722e6f483439abf0eca2a693c8,
     type: 3}
   _vertical: {fileID: 1982423272332009338, guid: 97cf830903a20d349b3b14df6b432299,

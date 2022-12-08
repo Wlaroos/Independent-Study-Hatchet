@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] PlayerController _playerRef;
+    [SerializeField] CandyCrate _crateRef;
     [SerializeField] GameObject[] _enemies;
     [SerializeField] float _spawnInterval;
     [SerializeField] float[] _spawnWeights;
@@ -19,7 +20,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(interval);
         GameObject newEnemy = Instantiate(enemy, _spawnPoints[Random.Range(0, _spawnPoints.Length)], Quaternion.identity);
-        newEnemy.GetComponent<EnemyBase>().SetPlayerRef(_playerRef);
+        newEnemy.GetComponent<EnemyBase>().SetRefs(_playerRef, _crateRef);
         if (newEnemy.name.Contains("Witch"))
         {
             newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -6.5f + Random.Range(-0.75f,0.75f), 0);

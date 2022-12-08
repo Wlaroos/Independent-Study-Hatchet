@@ -11,8 +11,7 @@ public abstract class EnemyBase : MonoBehaviour
     // Movement/Health Variables
     [SerializeField] protected float _maxSpeed = 5f;
     protected float _speed;
-    protected Vector3 _direction;
-    protected bool _directionBool;
+    protected Vector3 _direction;   
     [SerializeField] protected int _knockbackForce = 150;
     [SerializeField] protected int _maxHealth = 1;
     private int _currentHealth;
@@ -25,10 +24,14 @@ public abstract class EnemyBase : MonoBehaviour
     private Color flashColor = new Color32(255, 75, 75, 255);
 
     // Prefab variables
-    [SerializeField] protected GameObject _playerRef;
     [SerializeField] GameObject _horizontal;
     [SerializeField] GameObject _vertical;
     [SerializeField] ParticleSystem _candyParticle;
+
+    protected GameObject _playerRef;
+    protected GameObject _crateRef;
+    protected GameObject _objectToFollowRef;
+    protected static EnemyBase _isAttackingCrate;
 
     // Component/Object Variables
     protected Animator _anim;
@@ -68,11 +71,12 @@ public abstract class EnemyBase : MonoBehaviour
         AddArrows();
         Move();
         StartCoroutine(SpawnDelay());
+        StartCoroutine(DistanceChecker());
     }
 
     protected virtual void Update()
     {
-        _direction = new Vector3(_playerRef.transform.position.x - transform.position.x, 0, 0);
+        _direction = new Vector3(_objectToFollowRef.transform.position.x - transform.position.x, 0, 0);
     }
 
     private void FixedUpdate()
@@ -82,7 +86,6 @@ public abstract class EnemyBase : MonoBehaviour
         {
             Move();
         }
-
     }
 
     // Shitty translate movement, will be changed
@@ -90,17 +93,15 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        if (_playerRef.transform.position.x > transform.position.x && _playerRef && _directionBool == false)
+        if (_objectToFollowRef.transform.position.x > transform.position.x)
         {
             scale.x = -1;
             _arrowHolder.transform.localScale = new Vector3(-1, 1, 1);
-            _directionBool = true;
         }
-        else if(_playerRef.transform.position.x <= transform.position.x && _playerRef && _directionBool == true)
+        else
         {
             scale.x = 1;
             _arrowHolder.transform.localScale = new Vector3(1, 1, 1);
-            _directionBool = false;
         }
 
         transform.localScale = scale;
@@ -108,14 +109,38 @@ public abstract class EnemyBase : MonoBehaviour
         // Checks for collision between the ground layer and a circle collider that is created
         LayerMask mask = LayerMask.GetMask("Ground");
         LayerMask mask2 = LayerMask.GetMask("Ground(Objects)");
-        Collider2D colliders = Physics2D.OverlapCircle(transform.position + new Vector3(0,-.88f,0), 1f, mask);
+        Collider2D colliders = Physics2D.OverlapCircle(transform.position + new Vector3(0, -.88f, 0), 1f, mask);
         Collider2D colliders2 = Physics2D.OverlapCircle(transform.position + new Vector3(0, -.88f, 0), 1f, mask2);
-        //Set grounded and resets player jumps
+
+        // Enemy GroundCheck
         if (colliders != null || colliders2 != null)
         {
-            _rb.velocity = new Vector2(_direction.normalized.x * _speed, -1f * _speed);
-            
+            // Check if enemy is close to the crate
+            if (_objectToFollowRef == _crateRef && Mathf.Abs(Vector2.Distance(_objectToFollowRef.transform.position, transform.position)) < 2)
+            {
+                _rb.velocity = new Vector2(0, -10);
+
+                // If no one is attacking the crate, set itself as the one attacking the crate
+                if (_isAttackingCrate == null)
+                {
+                    var test = GameObject.FindGameObjectsWithTag("Enemy");
+                    for (int i = 0; i < test.Length; i++)
+                    {
+                        // Sets the static variables for the enemies that are in the scene
+                        test[i].GetComponent<EnemyBase>().SetAttacker(this);
+                    }
+                }
+            }
+
+            // Normal Movement
+            else
+            {
+                _rb.velocity = new Vector2(_direction.normalized.x * _speed, -1f * _speed);
+            }
+
         }
+
+        // If ground check fails, remove x velocity
         else
         {
             _rb.velocity = new Vector2(0, -10);
@@ -138,6 +163,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
 
         PlayerController playerRef = collision.gameObject.transform.GetComponent<PlayerController>();
+        CandyCrate crateRef = collision.gameObject.transform.GetComponent<CandyCrate>();
 
         // If they touch the player, decrease health and give direction for knockback (Direction enemy is facing)
         if (playerRef != null && _anim.GetBool("isAttacking") == true)
@@ -146,6 +172,11 @@ public abstract class EnemyBase : MonoBehaviour
             if (transform.forward.x == 1) dir = 1; else dir = -1;
 
             playerRef.DecreaseHealth(_contactDamage, dir);
+        }
+
+        if (crateRef != null && _anim.GetBool("isAttacking") == true)
+        {
+            crateRef.TakeDamage(_contactDamage);
         }
     }
 
@@ -275,6 +306,29 @@ public abstract class EnemyBase : MonoBehaviour
         _anim.Play(0, 0, Random.value);
     }
 
+    // Checks how close the enemy is to the crate and the player every 2 seconds
+    private IEnumerator DistanceChecker()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Follow Player
+        if(Vector2.Distance(transform.position, _playerRef.transform.position) <= Vector2.Distance(transform.position, _crateRef.transform.position))
+        {
+            _objectToFollowRef = _playerRef;
+        }
+
+        // If no one is attacking the crate, follow the crate
+        else
+        {
+            if (_isAttackingCrate == null)
+            {
+                _objectToFollowRef = _crateRef;
+            }
+        }
+
+        StartCoroutine(DistanceChecker());
+    }
+
     private void AddArrows()
     {
         // Amount of arrows created is based on how much health the enemy has
@@ -308,14 +362,29 @@ public abstract class EnemyBase : MonoBehaviour
 
     }
 
-    public void SetPlayerRef(PlayerController player)
+    // Sets references from the SpawnManager
+    public void SetRefs(PlayerController player, CandyCrate crate)
     {
         _playerRef = player.gameObject;
+        _crateRef = crate.gameObject;
+        _objectToFollowRef = _playerRef;
     }
 
     // Base class is random between vertical and horizontal. Can be overwritten for specific enemies
     protected virtual int ArrowDirection()
     {
         return Random.Range(0, 2);
+    }
+
+    // Get method for the EnemyAttackRange script
+    public EnemyBase GetAttacker()
+    {
+        return _isAttackingCrate;
+    }
+
+    // Changes the static variable for the items that are already in the scene
+    public void SetAttacker(EnemyBase enemy)
+    {
+        _isAttackingCrate = enemy;
     }
 }

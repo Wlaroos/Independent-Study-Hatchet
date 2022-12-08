@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 1736879066279269156}
   m_Layer: 10
   m_Name: Werewolf
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +394,6 @@ MonoBehaviour:
   _maxHealth: 3
   _contactDamage: 1
   _startDazedTime: 0.5
-  _playerRef: {fileID: 0}
   _horizontal: {fileID: 2906169883122391982, guid: d2ccb213de70d4643b48e12f910cb0ab,
     type: 3}
   _vertical: {fileID: 1982423272332009338, guid: 35f36a1e0518f5b48a631363c7257397,

@@ -437,7 +437,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: -0.02}
+  m_Offset: {x: -0.25, y: 0.05}
   m_Size: {x: 0.98, y: 2.5}
   m_Direction: 0
 --- !u!114 &240081039
@@ -585,6 +585,87 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ca226489d6f4ecb4bb81fab0788495e8, type: 3}
   - {fileID: 8300000, guid: a69cf3ddf7a440d4bb1c37de96bd68b6, type: 3}
   - {fileID: 8300000, guid: 09732eea8785a0f4ba789b5ca808eb9f, type: 3}
+--- !u!1 &251043099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251043101}
+  - component: {fileID: 251043100}
+  m_Layer: 0
+  m_Name: ProtectSign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!212 &251043100
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251043099}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -942284087
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 8f6a5000c19a75a428548f46da9e0877, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.94, y: 2.37}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &251043101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251043099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.34, y: -9.96, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303757860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1198,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mailbox (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8899573280716404599, guid: 8c7859daa1d677e40ad8345b74084888,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8899573280716404601, guid: 8c7859daa1d677e40ad8345b74084888,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1353,6 +1439,150 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &671023192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671023194}
+  - component: {fileID: 671023193}
+  - component: {fileID: 671023197}
+  - component: {fileID: 671023196}
+  - component: {fileID: 671023195}
+  m_Layer: 0
+  m_Name: CandyCrate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!212 &671023193
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671023192}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -942284087
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: d6451237aa4e70749b433b62d7abcf84, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.81, y: 2.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &671023194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671023192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.94, y: -9.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671023195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671023192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f01889ee5769ec48857d4193eac5f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 30
+--- !u!61 &671023196
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671023192}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.81, y: 2.28}
+    newSize: {x: 2.81, y: 2.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2.28}
+  m_EdgeRadius: 0
+--- !u!50 &671023197
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671023192}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &679512179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1598,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &679512180
 MonoBehaviour:
@@ -1383,6 +1613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerRef: {fileID: 240081039}
+  _crateRef: {fileID: 671023195}
   _enemies:
   - {fileID: 3580433589708626911, guid: 3a79e3c3774bc524cbb595fc0164eb1a, type: 3}
   - {fileID: 8067400588804009306, guid: 8f7d08c7cc078f04ca23da570f67beac, type: 3}
@@ -1439,7 +1670,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!61 &718655263
 BoxCollider2D:
@@ -3328,6 +3559,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7606052532021967813, guid: d8dba2f8655695947b4e3e419b32345b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8dba2f8655695947b4e3e419b32345b, type: 3}
 --- !u!1001 &1395343818
@@ -3602,6 +3838,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 696861056750224472, guid: 7a93b601d0620db47873044ee5fc4801,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 696861056750224478, guid: 7a93b601d0620db47873044ee5fc4801,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3735,7 +3976,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1552645172
 MonoBehaviour:
@@ -4521,6 +4762,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mailbox03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4214586041149933026, guid: 5e5909996ba2a7543bcbc2d3b2e23abd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5909996ba2a7543bcbc2d3b2e23abd, type: 3}
 --- !u!1001 &1737387228
@@ -5252,6 +5498,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stump (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4170956273040716233, guid: 73451fc069e3f404389bfafe9637377e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4170956273040716234, guid: 73451fc069e3f404389bfafe9637377e,
         type: 3}
       propertyPath: m_SortingOrder
@@ -5329,7 +5580,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1990494718
 MonoBehaviour:
@@ -5737,6 +5988,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House3
       objectReference: {fileID: 0}
+    - target: {fileID: 696861056750224472, guid: 7a93b601d0620db47873044ee5fc4801,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 696861056750224478, guid: 7a93b601d0620db47873044ee5fc4801,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5860,6 +6116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Outhouse02
+      objectReference: {fileID: 0}
+    - target: {fileID: 849013230081411726, guid: b00512439b4e3614bbf2435ad0d1d08b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b00512439b4e3614bbf2435ad0d1d08b, type: 3}
@@ -6139,6 +6400,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash Can
       objectReference: {fileID: 0}
+    - target: {fileID: 3618898633461338566, guid: 986ab10d24c2f9a4f85fad7aaed02e23,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3618898633461338568, guid: 986ab10d24c2f9a4f85fad7aaed02e23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6207,6 +6473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stump
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170956273040716233, guid: 73451fc069e3f404389bfafe9637377e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4170956273040716235, guid: 73451fc069e3f404389bfafe9637377e,
         type: 3}
@@ -6332,6 +6603,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mailbox03
       objectReference: {fileID: 0}
+    - target: {fileID: 4214586041149933026, guid: 5e5909996ba2a7543bcbc2d3b2e23abd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5909996ba2a7543bcbc2d3b2e23abd, type: 3}
 --- !u!1001 &4560146769733480663
@@ -6401,6 +6677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Outhouse
       objectReference: {fileID: 0}
+    - target: {fileID: 4560146770478399592, guid: db2b05036aa673d4699650339c010ad5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2b05036aa673d4699650339c010ad5, type: 3}
 --- !u!1001 &5070379572460191587
@@ -6414,6 +6695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070379572085759601, guid: 9f54cd6e670ffec40a79b80030561987,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5070379572085759607, guid: 9f54cd6e670ffec40a79b80030561987,
         type: 3}
@@ -6623,6 +6909,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mailbox02
       objectReference: {fileID: 0}
+    - target: {fileID: 7103879733137082295, guid: 7dea4aaa59c3f6345a7e693e9f877246,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dea4aaa59c3f6345a7e693e9f877246, type: 3}
 --- !u!1001 &7606052531867481146
@@ -6697,6 +6988,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7606052532021967813, guid: d8dba2f8655695947b4e3e419b32345b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8dba2f8655695947b4e3e419b32345b, type: 3}
 --- !u!1001 &8899573281689109505
@@ -6715,6 +7011,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mailbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899573280716404599, guid: 8c7859daa1d677e40ad8345b74084888,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8899573280716404601, guid: 8c7859daa1d677e40ad8345b74084888,
         type: 3}
@@ -6839,6 +7140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RootCellar02
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180930726037937279, guid: 986a4b1e7daf2454c83985513e2ed9e7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 986a4b1e7daf2454c83985513e2ed9e7, type: 3}
