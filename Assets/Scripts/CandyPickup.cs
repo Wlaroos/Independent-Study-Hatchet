@@ -50,6 +50,7 @@ public class CandyPickup : MonoBehaviour
             p.remainingLifetime = 0;
             // Add amount to player's candy count
             _HUDref.AddCandy(_candyValue);
+            GameScore.Instance.AddScore(_candyValue);
             // Applies local referece changes to the particle in the list
             _particles[i] = p;
 

@@ -32,6 +32,10 @@ public class HUDController : MonoBehaviour
         {
             AddCandy(10);
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            _playerRef.DecreaseHealth(5, 0);
+        }
     }
 
     // Candy counter, will be used in HUD / Shop later

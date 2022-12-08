@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     Animator _animator;
     AudioManager _am;
+    [SerializeField] GameObject _namePickRef;
 
     private void Awake()
     {
@@ -263,6 +264,7 @@ public class PlayerController : MonoBehaviour
     {
         _am.Play("PlayerDeath");
         ScreenShake.ShakeOnce(.75f, 5f);
+        _namePickRef.SetActive(true);
         gameObject.SetActive(false);
     }
 
