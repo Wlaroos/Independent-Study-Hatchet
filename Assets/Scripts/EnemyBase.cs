@@ -123,10 +123,10 @@ public abstract class EnemyBase : MonoBehaviour
                 // If no one is attacking the crate, set itself as the one attacking the crate
                 if (_isAttackingCrate == null)
                 {
+                    // Sets the static variable for the enemies that are in the scene
                     var test = GameObject.FindGameObjectsWithTag("Enemy");
                     for (int i = 0; i < test.Length; i++)
                     {
-                        // Sets the static variables for the enemies that are in the scene
                         test[i].GetComponent<EnemyBase>().SetAttacker(this);
                     }
                 }
@@ -323,6 +323,10 @@ public abstract class EnemyBase : MonoBehaviour
             if (_isAttackingCrate == null)
             {
                 _objectToFollowRef = _crateRef;
+            }
+            else if(_isAttackingCrate != this)
+            {
+                _objectToFollowRef = _playerRef;
             }
         }
 
