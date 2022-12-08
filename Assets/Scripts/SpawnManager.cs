@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject[] _enemies;
     [SerializeField] float _spawnInterval;
     [SerializeField] float[] _spawnWeights;
+
+    [SerializeField] Text _candyAmount;
+    int _extraHealth;
+    float _percentChance;
+
     [DraggablePoint] public Vector3[] _spawnPoints;
 
     private void Start()
@@ -21,10 +27,14 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(interval);
         GameObject newEnemy = Instantiate(enemy, _spawnPoints[Random.Range(0, _spawnPoints.Length)], Quaternion.identity);
         newEnemy.GetComponent<EnemyBase>().SetRefs(_playerRef, _crateRef);
+        newEnemy.GetComponent<EnemyBase>().AddMaxHealth(_extraHealth, _percentChance);
         if (newEnemy.name.Contains("Witch"))
         {
             newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -6.5f + Random.Range(-0.75f,0.75f), 0);
         }
+
+        Test(int.Parse(_candyAmount.text));
+
         //else { newEnemy.transform.position = new Vector3(newEnemy.transform.position.x, -10f, 0); }
         StartCoroutine(SpawnEnemy(_spawnInterval, _enemies[GetRandomWeightedIndex(_spawnWeights)]));
     }
@@ -65,5 +75,16 @@ public class SpawnManager : MonoBehaviour
         return -1;
     }
 
+    void Test(int amount)
+    {
+        if(amount / 50 > 0)
+        {
+            _extraHealth = (amount / 50);
+            _percentChance = (amount / 50) * 0.1f;
+
+            Debug.Log("EXtra HP: " + _extraHealth);
+            Debug.Log("%: " + _percentChance);
+        }
+    }
 
 }

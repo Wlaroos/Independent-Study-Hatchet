@@ -26,6 +26,14 @@ public class HUDController : MonoBehaviour
         _healthSlider.value = _currentHealth;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            AddCandy(10);
+        }
+    }
+
     // Candy counter, will be used in HUD / Shop later
     public void AddCandy(int amount)
     {

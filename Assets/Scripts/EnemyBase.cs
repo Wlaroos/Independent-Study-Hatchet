@@ -50,7 +50,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         _am = FindObjectOfType<AudioManager>();
-        if(_maxHealth > 1) _maxHealth = Random.Range(_maxHealth - 1, _maxHealth + 1);
+        if (_maxHealth > 1) _maxHealth = Random.Range(_maxHealth - 1, _maxHealth + 1);
         _currentHealth = _maxHealth;
         _speed = _maxSpeed;
         _artHolder = transform.GetChild(0).gameObject;
@@ -390,5 +390,18 @@ public abstract class EnemyBase : MonoBehaviour
     public void SetAttacker(EnemyBase enemy)
     {
         _isAttackingCrate = enemy;
+    }
+
+    public void AddMaxHealth(int amount, float chance)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            if (Random.value < chance)
+            {
+                _maxHealth++;
+            }
+        }
+
+        _currentHealth = _maxHealth;
     }
 }

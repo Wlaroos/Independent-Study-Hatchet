@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f01889ee5769ec48857d4193eac5f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 30
+  _maxHealth: 20
 --- !u!61 &671023196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1670,6 +1670,7 @@ MonoBehaviour:
   - 10
   - 3
   - 2
+  _candyAmount: {fileID: 1105764440}
   _spawnPoints:
   - {x: 16.07635, y: -5.5783443, z: 0}
   - {x: 19.329409, y: -10, z: 0}
