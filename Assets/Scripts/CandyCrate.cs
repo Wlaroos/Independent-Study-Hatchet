@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CandyCrate : MonoBehaviour
 {
-    ParticleSystem ps;
-    [SerializeField] private int _maxHealth = 100;
-    private int _currentHealth;
+    public event Action CrateDamage;
+
+    public int _maxHealth = 100;
+    public int _currentHealth;
+
+    [SerializeField] HUDController _HUDRef;
+
     private SpriteRenderer _hpsr;
+    ParticleSystem ps;
 
     private void Awake()
     {
@@ -24,6 +30,8 @@ public class CandyCrate : MonoBehaviour
 
         Debug.Log("Current Candy:" + _currentHealth);
         ps.Play();
+
+        CrateDamage?.Invoke();
     }
 
 }
