@@ -68,7 +68,7 @@ public class NamePicker : MonoBehaviour
     {
         if(fade == true)
         {
-            BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, BG.color.a + 0.5f * Time.deltaTime);
+            BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, BG.color.a + 1f * Time.deltaTime);
         }
     }
 
