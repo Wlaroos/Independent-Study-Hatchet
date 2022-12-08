@@ -11,6 +11,7 @@ public class CandyCrate : MonoBehaviour
     public int _currentHealth;
 
     [SerializeField] HUDController _HUDRef;
+    [SerializeField] PlayerController __playerRef;
 
     private SpriteRenderer _hpsr;
     ParticleSystem ps;
@@ -28,10 +29,18 @@ public class CandyCrate : MonoBehaviour
 
         _hpsr.transform.localScale = new Vector3((float)_currentHealth / (float)_maxHealth * 1.5f, .15f, 1);
 
-        Debug.Log("Current Candy:" + _currentHealth);
         ps.Play();
 
         CrateDamage?.Invoke();
+
+        if(_currentHealth <= 0)
+        {
+            Lose();
+        }
     }
 
+    private void Lose()
+    {
+        __playerRef.DecreaseHealth(100,0);
+    }
 }

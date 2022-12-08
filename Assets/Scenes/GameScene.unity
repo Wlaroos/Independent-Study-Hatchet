@@ -444,7 +444,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 288112f15ee0af04e916c42bf29b9f07, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1473,16 +1473,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 2522736153713272396, guid: 93f2bc476c904384e9a63a5063436876,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2522736153713272396, guid: 93f2bc476c904384e9a63a5063436876,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 2522736153713272397, guid: 93f2bc476c904384e9a63a5063436876,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1874,8 +1864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _healthSlider: {fileID: 1203638452}
-  _crateMaxHealth: 10
-  _crateHealthSlider: {fileID: 0}
+  _crateHealthSlider: {fileID: 1895134661}
   _candyText: {fileID: 1105764440}
   _flashImage: {fileID: 2144542221}
   _playerRef: {fileID: 240081039}
@@ -2289,8 +2278,8 @@ GameObject:
   - component: {fileID: 671023193}
   - component: {fileID: 671023197}
   - component: {fileID: 671023196}
-  - component: {fileID: 671023195}
   - component: {fileID: 671023199}
+  - component: {fileID: 671023195}
   - component: {fileID: 671023198}
   m_Layer: 0
   m_Name: CandyCrate
@@ -2377,9 +2366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f01889ee5769ec48857d4193eac5f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 1
   _currentHealth: 0
   _HUDRef: {fileID: 471360995}
+  __playerRef: {fileID: 240081039}
 --- !u!61 &671023196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10834,16 +10824,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 4532496942455007209, guid: 21a250056ca4c83469fdfa3ade6dccc2,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4532496942455007209, guid: 21a250056ca4c83469fdfa3ade6dccc2,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 4532496942455007212, guid: 21a250056ca4c83469fdfa3ade6dccc2,
         type: 3}
       propertyPath: m_Name
@@ -11604,7 +11584,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 162991283b521a747808bf7d296a0f41, type: 3}
     - {fileID: 8300000, guid: 85ff32efeedb24542bbed4c0905d70b7, type: 3}
     - {fileID: 8300000, guid: a72412d47855c0f4da24aeed8fbc8743, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1.05
     loop: 0
     source: {fileID: 0}
@@ -11613,7 +11593,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 356e39b57f7ae374d9d562ebbc9f52cc, type: 3}
     - {fileID: 8300000, guid: 5c3d48273e6519a46a5d3394adc7dbc8, type: 3}
     - {fileID: 8300000, guid: 876a7d096d3a1fa44b6904b1811138d0, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11622,7 +11602,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3f135fc0d0eedc34d9d0187a51a92a04, type: 3}
     - {fileID: 8300000, guid: 636946fdac85fd5489445e50cb97f0b8, type: 3}
     - {fileID: 8300000, guid: d1a720eb2fd26744a86c2cd11785f618, type: 3}
-    volume: 0.33
+    volume: 0.66
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11633,7 +11613,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 09732eea8785a0f4ba789b5ca808eb9f, type: 3}
     - {fileID: 8300000, guid: d19221de4b932f44798837503c300047, type: 3}
     - {fileID: 8300000, guid: 945c324269fb2a6428c869db32ac07e8, type: 3}
-    volume: 0.33
+    volume: 0.66
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11641,7 +11621,7 @@ MonoBehaviour:
     clip:
     - {fileID: 8300000, guid: dcb121d6afa3c6b4faa5ee8d08f7dbc7, type: 3}
     - {fileID: 8300000, guid: 1e9c490833a0e9d43b06501326a4c8ab, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11650,7 +11630,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d90535234b236734c9d9238bb95b51a7, type: 3}
     - {fileID: 8300000, guid: 83c8913f2b2313846ba2feeb1958d532, type: 3}
     - {fileID: 8300000, guid: 7c5f98b0cf241be41ae704cfd55e6d74, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11659,7 +11639,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 0411bf46d3233ff41a75cb848c7634e3, type: 3}
     - {fileID: 8300000, guid: e94ff1b0ae0d3c741b6dc88844020849, type: 3}
     - {fileID: 8300000, guid: 9835d469ebacde64b8e68716c7208588, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -11668,21 +11648,21 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 7b7198ac8d879e147be556198803f21a, type: 3}
     - {fileID: 8300000, guid: 7f08c5f94a733894db8f9f17388b6fd2, type: 3}
     - {fileID: 8300000, guid: 8682b8406ff61ec48ad84fd71d0b09f3, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: EnemyDeath
     clip:
     - {fileID: 8300000, guid: 0bb1d0345fd35494e88dd3b1d55f3631, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: PlayerDeath
     clip:
     - {fileID: 8300000, guid: ddbd78529f030a14aa5962dc63946551, type: 3}
-    volume: 0.25
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -13104,7 +13084,7 @@ GameObject:
   - component: {fileID: 1895134660}
   - component: {fileID: 1895134661}
   m_Layer: 5
-  m_Name: CrateBar
+  m_Name: CrateSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -73,6 +73,7 @@ public class HUDController : MonoBehaviour
     {
         _currentHealth = _playerRef.CurrentHealth;
         _healthSlider.value = _currentHealth;
+        StopAllCoroutines();
         StartCoroutine(ImageFlashCoroutine(.5f));
     }
 
@@ -80,6 +81,7 @@ public class HUDController : MonoBehaviour
     {
         _crateCurrentHealth = _crateRef._currentHealth;
         _crateHealthSlider.value = _crateCurrentHealth;
+        StopAllCoroutines();
         StartCoroutine(SmallImageFlashCoroutine(.25f));
     }
 
