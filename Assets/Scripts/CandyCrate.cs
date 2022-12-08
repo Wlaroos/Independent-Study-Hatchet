@@ -13,11 +13,13 @@ public class CandyCrate : MonoBehaviour
     [SerializeField] HUDController _HUDRef;
     [SerializeField] PlayerController __playerRef;
 
-    private SpriteRenderer _hpsr;
+    AudioManager _am;
+    SpriteRenderer _hpsr;
     ParticleSystem ps;
 
     private void Awake()
     {
+        _am = FindObjectOfType<AudioManager>();
         _hpsr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         ps = GetComponent<ParticleSystem>();
         _currentHealth = _maxHealth;
@@ -31,6 +33,8 @@ public class CandyCrate : MonoBehaviour
 
         ps.Play();
 
+        _am.Play("CrateDamage");
+
         CrateDamage?.Invoke();
 
         if(_currentHealth <= 0)
@@ -42,5 +46,6 @@ public class CandyCrate : MonoBehaviour
     private void Lose()
     {
         __playerRef.DecreaseHealth(100,0);
+        gameObject.SetActive(false);
     }
 }
